@@ -1,0 +1,8 @@
+_source
+*.pptx
+*.docx
+*.pdf
+DESIGN.md
+IMPLEMENTATION_REPORT.md
+MEDIA_GUIDE.md
+PLAN.md
