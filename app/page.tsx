@@ -8,6 +8,7 @@ import IndustryCard from '@/components/IndustryCard';
 import Reveal from '@/components/Reveal';
 import Counter from '@/components/Counter';
 import PartnerPill from '@/components/PartnerPill';
+import TextScramble from '@/components/TextScramble';
 import { verticals, capabilities, whyHiliks, partners, ecosystemStats } from '@/lib/site';
 
 export default function Home() {
@@ -151,44 +152,11 @@ export default function Home() {
       btn.addEventListener('mouseleave', leave);
     });
 
-    // text-scramble decode
-    const CH = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789/\u00B7\u2014';
-    function scramble(el: HTMLElement) {
-      const txt = el.dataset.txt || el.textContent || '';
-      el.dataset.txt = txt;
-      let f = 0;
-      const total = txt.length * 3;
-      const id = setInterval(() => {
-        f++;
-        el.textContent = txt
-          .split('')
-          .map((c, i) =>
-            c === ' ' ? ' ' : i < f / 3 ? c : CH[Math.floor(Math.random() * CH.length)]
-          )
-          .join('');
-        if (f >= total) {
-          clearInterval(id);
-          el.textContent = txt;
-        }
-      }, 22);
-    }
-
-    (async () => {
-      const gsap = (await import('gsap')).default;
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      gsap.registerPlugin(ScrollTrigger);
-      document.querySelectorAll('.sec-num').forEach((el) => {
-        ScrollTrigger.create({
-          trigger: el,
-          start: 'top 90%',
-          once: true,
-          onEnter: () => scramble(el as HTMLElement),
-        });
-      });
-    })();
-
-    const kick = document.querySelector('.kicker');
-    if (kick) setTimeout(() => scramble(kick as HTMLElement), 350);
+    // NOTE: the hero kicker decode effect now uses the React-safe
+    // <TextScramble> component (state-driven). The previous code mutated
+    // el.textContent directly on React-rendered .sec-num / .kicker nodes,
+    // which corrupted React's tracked text nodes and threw
+    // "Failed to execute 'removeChild' on 'Node'" \u2014 breaking all animations.
 
     return () => {
       if (ctx) ctx.revert();
@@ -205,7 +173,7 @@ export default function Home() {
         <div className="hero-vig" aria-hidden />
         <div className="wrap">
           <div className="hero-inner" ref={heroInnerRef}>
-            <div className="kicker mono">Industry-Focused Digital Engineering &amp; Enterprise Technology</div>
+            <TextScramble as="div" className="kicker mono" text="Industry-Focused Digital Engineering & Enterprise Technology" />
             <h1 className="hero-h">Engineering <em>Intelligent Operations</em> Across Critical Industries</h1>
             <p className="hero-sub">
               Niche technology, AI-native systems integration, engineering services and digital transformation &mdash;
