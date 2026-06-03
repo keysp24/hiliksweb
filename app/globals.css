@@ -197,8 +197,8 @@ section.band{position:relative;padding:var(--section-y) 0;z-index:3}
 .h-track{display:flex;gap:24px;padding:0 36px 60px;will-change:transform}
 .icard{flex:0 0 380px;height:440px;border:1px solid var(--line);border-radius:var(--r-lg);padding:34px;position:relative;overflow:hidden;
   background:var(--panel);transition:border-color .4s,transform .4s;display:flex;flex-direction:column;justify-content:flex-end}
-.icard .idx{position:absolute;top:26px;left:34px;font-family:var(--font-mono);font-size:1.05rem;font-weight:700;letter-spacing:.1em;color:var(--ac,var(--orange))}
-.icard .flag-pill{position:absolute;top:30px;left:74px;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#06080c;background:var(--ac,var(--orange));padding:3px 8px;border-radius:20px;font-weight:700}
+.icard .idx{position:absolute;top:24px;left:34px;font-family:var(--font-mono);font-size:2.1rem;font-weight:700;letter-spacing:.1em;color:var(--ac,var(--orange))}
+.icard .flag-pill{position:absolute;top:34px;left:104px;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#06080c;background:var(--ac,var(--orange));padding:3px 8px;border-radius:20px;font-weight:700}
 .icard .media{position:absolute;top:0;right:0;width:60%;height:55%;opacity:.5;
   background:radial-gradient(circle at 70% 30%,var(--ac,rgba(242,104,14,.4)),transparent 65%);filter:blur(8px)}
 .icard h4{font-size:1.7rem;font-weight:600;letter-spacing:-.01em}
@@ -222,11 +222,12 @@ section.band{position:relative;padding:var(--section-y) 0;z-index:3}
 }
 
 /* industries: dark cards + animated white graphics */
-.icard{background:#10151D;border-color:#202A36;color:#EEF2F7;align-items:flex-start;justify-content:flex-end}
-.icard h4{color:#EEF2F7;font-size:1.95rem;font-weight:700;letter-spacing:-.01em}
+.icard{background:#10151D;border-color:#202A36;color:#EEF2F7;align-items:center;justify-content:center;text-align:center}
+.icard h4{color:#EEF2F7;font-size:3.9rem;font-weight:700;letter-spacing:-.01em;line-height:1.04}
 .icard p{color:#94A1B2}
 .icard .media{display:none}
-.icard .lbl{margin-bottom:12px;font-size:12.5px;font-weight:600;color:var(--ac,var(--orange))}
+/* redundant with the now-prominent centered <h4> title — hidden */
+.icard .lbl{display:none}
 .igfx{position:absolute;top:26px;right:24px;width:124px;height:124px;opacity:.95;pointer-events:none}
 .igfx svg{width:100%;height:100%;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 /* colored, per-vertical industry icons (#7) */
@@ -369,6 +370,8 @@ footer{border-top:1px solid var(--line);margin-top:120px;padding:60px 0 50px;pos
 .light{--text:#14161A;--muted:#5A6675;--muted-2:#9AA1AC;--line:#E4E0DA;--line-2:#D3CEC6;
   --panel:#FFFFFF;--panel-2:#F1EEE9;--ink-2:#FAF8F5;background:#F3F1ED;color:var(--text)}
 .light .sec-title,.light h4,.light h5{color:var(--text)}
+/* industry cards are dark even inside .light sections — keep their title light */
+.light .icard h4,.light .icard h5{color:#EEF2F7}
 .light .why{box-shadow:0 20px 44px -36px rgba(20,22,26,.55)}
 
 /* interior page helpers */
