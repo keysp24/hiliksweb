@@ -44,10 +44,10 @@ export default function Hero3D() {
       const d = new THREE.DirectionalLight(0xffffff, 0.8);
       d.position.set(4, 8, 6);
       scene.add(d);
-      const pO = new THREE.PointLight(0xF2680E, 2.4, 60);
+      const pO = new THREE.PointLight(0xFF9900, 2.6, 60); // gold key light
       pO.position.set(7, 3, 10);
       scene.add(pO);
-      const pB = new THREE.PointLight(0x2E8FE0, 1.2, 50);
+      const pB = new THREE.PointLight(0x00B0F0, 1.5, 50); // blue fill light
       pB.position.set(-9, -4, 4);
       scene.add(pB);
 
@@ -57,26 +57,28 @@ export default function Hero3D() {
         spacing = 0.46,
         step = 0.34;
       const ballGeo = new THREE.SphereGeometry(0.17, 16, 16);
+      // Gold spheres (#FF9900) on both helix strands
       const matA = new THREE.MeshStandardMaterial({
-        color: 0xf2680e,
-        metalness: 0.65,
-        roughness: 0.28,
-        emissive: 0xc24409,
-        emissiveIntensity: 0.35,
+        color: 0xff9900,
+        metalness: 0.7,
+        roughness: 0.25,
+        emissive: 0xb36b00,
+        emissiveIntensity: 0.45,
       });
       const matB = new THREE.MeshStandardMaterial({
-        color: 0xff9248,
-        metalness: 0.55,
-        roughness: 0.32,
-        emissive: 0x6e2e08,
-        emissiveIntensity: 0.3,
+        color: 0xffad33,
+        metalness: 0.6,
+        roughness: 0.3,
+        emissive: 0x8a5200,
+        emissiveIntensity: 0.4,
       });
+      // Blue connecting sticks (#00B0F0)
       const rungMat = new THREE.MeshStandardMaterial({
-        color: 0x8a98a8,
-        metalness: 0.7,
-        roughness: 0.4,
-        emissive: 0x14181e,
-        emissiveIntensity: 0.2,
+        color: 0x00b0f0,
+        metalness: 0.6,
+        roughness: 0.3,
+        emissive: 0x0072a3,
+        emissiveIntensity: 0.45,
       });
       const rungGeo = new THREE.CylinderGeometry(0.045, 0.045, radius * 2, 10);
       const up = new THREE.Vector3(0, 1, 0);
@@ -199,8 +201,8 @@ export default function Hero3D() {
       const loop = () => {
         t += 0.01;
         const scrollT = scrollTRef.current;
+        // Steady, constant rotation everywhere — scroll no longer accelerates spin (#3)
         helix.rotation.y += 0.0035;
-        helix.rotation.y += scrollT * 0.5;
         helix.position.y = scrollT * 6;
         pts.rotation.y = t * 0.04;
         grid.position.z = ((t * 3) % 4) - 2;

@@ -24,7 +24,8 @@ export default function IndustryCard({
       }}
     >
       <IndustryGlyph slug={v.slug} />
-      <span className="idx mono">{v.flagship ? 'FLAGSHIP' : String((index ?? 0) + 1).padStart(2, '0')}</span>
+      <span className="idx mono">{String((index ?? 0) + 1).padStart(2, '0')}</span>
+      {v.flagship && <span className="flag-pill">Flagship</span>}
       <span className="lbl mono">{v.name}</span>
       <h4>{v.name}</h4>
       {showBlurb && <p>{v.blurb}</p>}

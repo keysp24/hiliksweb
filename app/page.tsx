@@ -7,6 +7,7 @@ import AIBand from '@/components/AIBand';
 import IndustryCard from '@/components/IndustryCard';
 import Reveal from '@/components/Reveal';
 import Counter from '@/components/Counter';
+import PartnerPill from '@/components/PartnerPill';
 import { verticals, capabilities, whyHiliks, partners, ecosystemStats } from '@/lib/site';
 
 export default function Home() {
@@ -339,7 +340,7 @@ export default function Home() {
           </div>
           <div className="partners">
             {partners.map((p) => (
-              <span key={p} className="p reveal">{p}</span>
+              <PartnerPill key={p.name} name={p.name} domain={p.domain} />
             ))}
           </div>
         </div>

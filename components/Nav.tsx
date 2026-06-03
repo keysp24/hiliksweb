@@ -69,12 +69,29 @@ export default function Nav() {
       </header>
 
       <div className={`mmenu ${open ? 'open' : ''}`} id="mmenu">
-        <Link href="/industries/railways">Railways<span className="mono">01</span></Link>
-        <Link href="/industries">Industries<span className="mono">02</span></Link>
-        <Link href="/solutions">Solutions<span className="mono">03</span></Link>
-        <Link href="/about">Why Hiliks<span className="mono">04</span></Link>
-        <Link href="/ecosystem">Ecosystem<span className="mono">05</span></Link>
-        <Link href="/contact" className="mcta">Talk to Experts &rarr;</Link>
+        <div className="mmenu-top">
+          <Link href="/" className="brand" data-c onClick={() => setOpen(false)} aria-label="Hiliks home">
+            <Image
+              src="/images/hiliks-logo.png"
+              alt="Hiliks Technologies"
+              width={1532}
+              height={523}
+              className="logo-img"
+              style={{ height: 34, width: 'auto' }}
+            />
+          </Link>
+          <button className="mmenu-close" aria-label="Close menu" onClick={() => setOpen(false)} data-c>
+            <span /><span />
+          </button>
+        </div>
+        <div className="mmenu-links">
+          <Link href="/industries/railways">Railways<span className="mono">01</span></Link>
+          <Link href="/industries">Industries<span className="mono">02</span></Link>
+          <Link href="/solutions">Solutions<span className="mono">03</span></Link>
+          <Link href="/about">Why Hiliks<span className="mono">04</span></Link>
+          <Link href="/ecosystem">Ecosystem<span className="mono">05</span></Link>
+          <Link href="/contact" className="mcta" onClick={() => setOpen(false)}>Talk to Experts &rarr;</Link>
+        </div>
       </div>
     </>
   );

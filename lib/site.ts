@@ -152,10 +152,20 @@ export const whyHiliks = [
   { icon: '<path d="M6 4h12l3 5-9 11L3 9z"/><path d="M3 9h18M9 4 7 9l5 11M15 4l2 5-5 11"/>', t: 'Niche by Design', d: 'Engineering-led DNA, with a flagship Railways practice.' },
 ];
 
-export const partners = [
-  'Oracle', 'OpenText', 'Microsoft Azure', 'AWS',
-  'Google Cloud', 'UiPath', 'G42', 'Moro Hub',
-  'Trend Micro', 'Forescout', 'AppDynamics',
+export type Partner = { name: string; domain: string };
+
+export const partners: Partner[] = [
+  { name: 'Oracle', domain: 'oracle.com' },
+  { name: 'OpenText', domain: 'opentext.com' },
+  { name: 'Microsoft Azure', domain: 'microsoft.com' },
+  { name: 'AWS', domain: 'aws.amazon.com' },
+  { name: 'Google Cloud', domain: 'cloud.google.com' },
+  { name: 'UiPath', domain: 'uipath.com' },
+  { name: 'G42', domain: 'g42.ai' },
+  { name: 'Moro Hub', domain: 'morohub.com' },
+  { name: 'Trend Micro', domain: 'trendmicro.com' },
+  { name: 'Forescout', domain: 'forescout.com' },
+  { name: 'AppDynamics', domain: 'appdynamics.com' },
 ];
 
 export const ecosystemStats = [

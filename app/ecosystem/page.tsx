@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import PageHero from '@/components/PageHero';
 import Reveal from '@/components/Reveal';
 import CtaBand from '@/components/CtaBand';
+import PartnerPill from '@/components/PartnerPill';
 import { partners, ecosystemStats } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -53,7 +54,7 @@ export default function EcosystemPage() {
           <Reveal as="h2" className="sec-title">Best-of-breed platforms, engineering-led integration</Reveal>
           <div className="partners">
             {partners.map((p) => (
-              <span key={p} className="p">{p}</span>
+              <PartnerPill key={p.name} name={p.name} domain={p.domain} />
             ))}
           </div>
         </div>
