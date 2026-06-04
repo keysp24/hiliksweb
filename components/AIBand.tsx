@@ -1,13 +1,16 @@
 'use client';
 import { aiPills } from '@/lib/site';
+import Reveal from './Reveal';
 
 /**
  * AI-Native band — matches source aiband exactly.
  * Grid layout with neural network SVG on the right.
+ * Self-reveals via <Reveal> so it animates in on every page (not just the
+ * homepage, which was the only page with a global .reveal animator).
  */
 export default function AIBand() {
   return (
-    <div className="aiband reveal">
+    <Reveal as="div" className="aiband">
       <div className="glow" aria-hidden />
       <div className="aiband-l">
         <span className="ai-badge mono"><i />AI-Native Digital Transformation</span>
@@ -41,6 +44,6 @@ export default function AIBand() {
           <circle className="node pulse" cx="300" cy="200" r="4" />
         </svg>
       </div>
-    </div>
+    </Reveal>
   );
 }

@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 
 export default function IndustriesPage() {
   const flagship = verticals.find((v) => v.flagship)!;
-  const rest = verticals.filter((v) => !v.flagship);
 
   return (
     <div style={{ ['--accent' as string]: 'var(--orange)' }}>
@@ -55,12 +54,12 @@ export default function IndustriesPage() {
       {/* OTHER VERTICALS */}
       <section className="band light">
         <div className="wrap">
-          <Reveal as="div" className="sec-num">More verticals</Reveal>
+          <Reveal as="div" className="sec-num">All Verticals</Reveal>
           <Reveal as="h2" className="sec-title">Engineering-led practices across critical industries</Reveal>
-          <div className="card-grid">
-            {rest.map((v, i) => (
-              <Reveal key={v.slug} delay={i * 40}>
-                <IndustryCard v={v} index={i + 1} href={`/industries/${v.slug}`} />
+          <div className="card-grid verticals-grid">
+            {verticals.map((v, i) => (
+              <Reveal key={v.slug} delay={i * 40} className={v.flagship ? 'v-flag-row' : ''}>
+                <IndustryCard v={v} index={i} href={`/industries/${v.slug}`} />
               </Reveal>
             ))}
           </div>

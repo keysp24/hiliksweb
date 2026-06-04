@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import Link from 'next/link';
 import Hero3D from '@/components/Hero3D';
 import Marquee from '@/components/Marquee';
@@ -11,11 +11,23 @@ import PartnerPill from '@/components/PartnerPill';
 import TextScramble from '@/components/TextScramble';
 import { verticals, capabilities, whyHiliks, partners, ecosystemStats } from '@/lib/site';
 
+// useLayoutEffect on the client, useEffect on the server (avoids the SSR
+// "useLayoutEffect does nothing on the server" warning).
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
 export default function Home() {
   const heroInnerRef = useRef<HTMLDivElement>(null);
   const flagCardRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  // NOTE: must be a *layout* effect. The #industries ScrollTrigger pin wraps
+  // its <section> in a .pin-spacer div (reparenting it in the DOM). The cleanup
+  // below (ctx.revert()) un-pins and restores the section to its original
+  // parent. As a layout-effect cleanup it runs synchronously in React's
+  // mutation phase — BEFORE React removes the section on route change — so
+  // React's removeChild sees the un-reparented node. With a passive useEffect
+  // the revert runs too late and React throws "Failed to execute 'removeChild'
+  // on 'Node': The node to be removed is not a child of this node."
+  useIsomorphicLayoutEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     let ctx: { revert: () => void } | null = null;

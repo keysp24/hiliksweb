@@ -26,8 +26,21 @@ export default function Nav() {
     return () => { document.body.style.overflow = ''; };
   }, [open]);
 
-  const isActive = (href: string) =>
-    href === '/' ? pathname === '/' : pathname.startsWith(href);
+  // A nav item matches when the path equals its href or is nested under it
+  // (with a real "/" boundary, so "/industries" doesn't match "/industries-x").
+  const matches = (href: string) =>
+    href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(href + '/');
+
+  // Only the MOST SPECIFIC match should be active. Railways (/industries/railways)
+  // is nested under Industries (/industries) but is its own nav item, so on a
+  // Railways route both prefixes match — pick the longest href so only Railways
+  // (not Industries) lights up.
+  const activeHref = primaryNav
+    .map((n) => n.href)
+    .filter(matches)
+    .sort((a, b) => b.length - a.length)[0];
+
+  const isActive = (href: string) => href === activeHref;
 
   return (
     <>

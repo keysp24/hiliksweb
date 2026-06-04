@@ -35,7 +35,11 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
       <PageHero
         accentVar={v.accentVar}
         glyph={<IndustryGlyph slug={v.slug} className="glyph-hero" />}
-        crumbs={[{ label: 'Industries', href: '/industries' }, { label: v.name }]}
+        crumbs={
+          v.flagship
+            ? [{ label: v.name }]
+            : [{ label: 'Industries', href: '/industries' }, { label: v.name }]
+        }
         eyebrow={v.flagship ? 'Flagship Business Unit' : 'Industry Business Unit'}
         title={v.unit}
         tag={v.tagline}

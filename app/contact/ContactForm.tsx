@@ -25,7 +25,7 @@ export default function ContactForm() {
   };
   const label: React.CSSProperties = {
     fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase',
-    color: 'var(--muted-2)', display: 'block', marginBottom: 8,
+    color: 'var(--muted)', display: 'block', marginBottom: 8,
   };
 
   return (
@@ -40,14 +40,14 @@ export default function ContactForm() {
               onClick={() => setRoute(r)}
               data-c
               style={{
-                padding: '9px 16px',
+                padding: '11px 20px',
                 borderRadius: 'var(--r-pill)',
                 border: '1px solid',
-                borderColor: route === r ? 'var(--orange)' : 'var(--line)',
+                borderColor: route === r ? 'var(--orange)' : 'var(--line-2)',
                 background: route === r ? 'rgba(242,104,14,.14)' : 'var(--ink-2)',
-                color: route === r ? 'var(--text)' : 'var(--muted)',
+                color: 'var(--text)',
                 fontFamily: 'var(--font-mono)',
-                fontSize: 12,
+                fontSize: 15,
                 letterSpacing: '.04em',
                 cursor: 'pointer',
                 transition: '.25s',

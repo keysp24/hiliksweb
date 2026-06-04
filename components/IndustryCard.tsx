@@ -17,7 +17,7 @@ export default function IndustryCard({
 }) {
   const card = (
     <div
-      className={`icard ${v.flagship ? 'flag' : ''}`}
+      className={`icard vcard ${v.flagship ? 'flag' : ''}`}
       style={{
         ['--ac' as string]: `var(${v.accentVar})`,
         ...(minHeight ? { minHeight } : {}),
