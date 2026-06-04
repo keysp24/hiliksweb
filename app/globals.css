@@ -21,6 +21,21 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+
+/* Lenis smooth-scroll required styles.
+   When Lenis is active it adds .lenis/.lenis-smooth on <html> and drives the
+   scroll position itself every frame. The rule below forces scroll-behavior to
+   `auto` so the native `scroll-behavior:smooth` above does NOT fight Lenis —
+   that conflict freezes/stutters scrolling on Safari/iOS, Firefox and Android
+   (it happens to coalesce harmlessly only on recent desktop Chrome). When Lenis
+   is NOT active (e.g. prefers-reduced-motion) the native smooth scroll above
+   still applies for anchor links. */
+html.lenis,
+html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+.lenis.lenis-smooth iframe{pointer-events:none}
 body{background:var(--ink);color:var(--text);font-family:var(--font-sans);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none}
 @media(pointer:coarse){body{cursor:auto}}
 .mono{font-family:var(--font-mono)}
