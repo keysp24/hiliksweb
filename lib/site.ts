@@ -14,6 +14,25 @@ export const company = {
   offices: 'India \u00b7 GCC (UAE / KSA)',
 } as const;
 
+// \u2500\u2500 Contact inquiry routing \u2500\u2500
+// Maps each inquiry-routing choice (a vertical name, or "Partnerships") to the
+// team inbox that should receive that inquiry. They all point at the central
+// inbox for now \u2014 replace each value with the real per-vertical recipient when
+// ready. Keys MUST match the labels rendered in the contact form.
+export const inquiryRouting: Record<string, string> = {
+  'Railways': 'hr@hiliks.com',
+  'Telecom': 'hr@hiliks.com',
+  'BFSI': 'hr@hiliks.com',
+  'Public Sector': 'hr@hiliks.com',
+  'Real Estate': 'hr@hiliks.com',
+  'Oil & Gas': 'hr@hiliks.com',
+  'Energy & Utilities': 'hr@hiliks.com',
+  'Partnerships': 'hr@hiliks.com',
+};
+
+// Used when an inquiry's route isn't found in the map above.
+export const inquiryFallbackEmail = company.email;
+
 export type Vertical = {
   slug: string;
   name: string;
