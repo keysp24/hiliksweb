@@ -19,6 +19,28 @@ Versioning follows `vMAJOR.MINOR.PATCH`:
 
 ---
 
+## v1.1.0 — 2026-06-05 18:45 IST
+
+New features and a fix.
+
+### Added
+- **Mega menu** — the Industries and Solutions nav items now open rich mega-menu
+  panels (3-column grid of icon + name + blurb, driven by the existing
+  verticals/capabilities data) with a "View all →" link. Opens on hover
+  (desktop) or tap/click; closes on Esc, outside-click, or route change.
+  Accessible (`aria-haspopup`/`aria-expanded`/`aria-controls`). Desktop/tablet
+  only — phones keep the existing burger menu.
+- **Contact CTA image** — the homepage Contact band now shows an industry-grid
+  image (Railways, Telecom, BFSI, Public Sector, Real Estate, Oil & Gas, Energy
+  & Utilities, Partnership) on its right side, top-aligned with the headline.
+
+### Fixed
+- **Route-change crash** — guarded `ScrollTrigger.refresh()` on navigation (two
+  frames + try/catch) so a pinned trigger mid-teardown can no longer throw
+  "Cannot read properties of null (reading 'insertBefore')".
+
+---
+
 ## v1.0.1 — 2026-06-05 16:21 IST
 
 Bug fixes.

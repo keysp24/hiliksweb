@@ -70,12 +70,30 @@ export default function LenisProvider({ children }: { children: ReactNode }) {
     if (!lenis) return;
     lenis.scrollTo(0, { immediate: true });
     window.scrollTo(0, 0);
-    let raf = 0;
+    let raf1 = 0;
+    let raf2 = 0;
     (async () => {
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      raf = requestAnimationFrame(() => ScrollTrigger.refresh());
+      // Wait two frames so the outgoing page's pinned triggers (e.g. the
+      // #industries pin) finish tearing their pin-spacers out of the DOM before
+      // we refresh. Guard the refresh too: if it still races a detached pin,
+      // GSAP throws "Cannot read properties of null (reading 'insertBefore')"
+      // inside its pin-swap — harmless here, and the next scroll/resize refresh
+      // recomputes positions correctly, so we must not let it crash the app.
+      raf1 = requestAnimationFrame(() => {
+        raf2 = requestAnimationFrame(() => {
+          try {
+            ScrollTrigger.refresh();
+          } catch {
+            /* transient route-change DOM race — safe to ignore */
+          }
+        });
+      });
     })();
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
   }, [pathname, lenis]);
 
   return <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>;
