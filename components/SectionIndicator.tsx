@@ -13,6 +13,10 @@ const SECTIONS = [
 
 export default function SectionIndicator() {
   const [active, setActive] = useState('');
+  // The HUD must NOT show while the hero is on screen — it only appears once the
+  // hero is scrolled past (i.e. from the Railways section onward), and hides
+  // again if you scroll back up into the hero.
+  const [visible, setVisible] = useState(false);
   const pathname = usePathname();
   const onHome = pathname === '/';
 
@@ -28,6 +32,18 @@ export default function SectionIndicator() {
       gsap.registerPlugin(ScrollTrigger);
 
       ctx = gsap.context(() => {
+        // Show the HUD only after the hero has fully scrolled past the top of
+        // the viewport, and hide it again when scrolling back into the hero.
+        const hero = document.querySelector('.hero');
+        if (hero) {
+          ScrollTrigger.create({
+            trigger: hero,
+            start: 'bottom top',
+            onEnter: () => setVisible(true),
+            onLeaveBack: () => setVisible(false),
+          });
+        }
+
         SECTIONS.forEach((s) => {
           const el = document.getElementById(s.id);
           if (!el) return;
@@ -51,7 +67,7 @@ export default function SectionIndicator() {
   if (!onHome) return null;
 
   return (
-    <div className="hud">
+    <div className={`hud${visible ? ' show' : ''}`}>
       {SECTIONS.map((s) => (
         <a
           key={s.id}
