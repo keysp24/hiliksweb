@@ -198,7 +198,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="scroll-cue mono">Scroll<span /></div>
       </section>
 
       <Marquee />
@@ -327,7 +326,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="band light" id="contact" style={{ paddingBottom: 40 }}>
+      <section className="band" id="contact" style={{ paddingBottom: 40 }}>
         <div className="wrap">
           <div className="cta-band reveal">
             <div className="glow" aria-hidden />

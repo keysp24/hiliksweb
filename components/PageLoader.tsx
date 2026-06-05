@@ -3,16 +3,14 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 export default function PageLoader() {
-  const [mounted, setMounted] = useState(false);
+  // NOTE: `loading` starts true and the overlay is rendered on the SERVER too,
+  // so the pre-loader is part of the very first HTML paint and covers the page
+  // immediately. (Previously a `mounted` gate returned null until a post-paint
+  // useEffect ran, which let the page content flash BEFORE the loader appeared.)
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
     let p = 0;
     const interval = setInterval(() => {
       p += Math.random() * 12;
@@ -24,12 +22,13 @@ export default function PageLoader() {
       }
     }, 140);
     return () => clearInterval(interval);
-  }, [mounted]);
+  }, []);
 
-  if (!mounted || !loading) return null;
+  if (!loading) return null;
 
   return (
     <div
+      id="page-loader"
       style={{
         position: 'fixed',
         inset: 0,
