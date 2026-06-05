@@ -19,6 +19,19 @@ Versioning follows `vMAJOR.MINOR.PATCH`:
 
 ---
 
+## v1.0.1 — 2026-06-05 16:21 IST
+
+Bug fixes.
+
+- **Section indicator** — the right-side section HUD ("Railways", dots) no longer
+  shows on the Hero. It now fades in only after the Hero is scrolled past (from
+  the Railways section onward) and hides again when scrolling back into the Hero.
+- **Case-study cards** — removed the stray underline on card text. The cards are
+  link (`<a>`) elements and `.icard` was missing `text-decoration:none`, so the
+  browser's default link underline showed through on the title/Challenge/Result.
+
+---
+
 ## v1.0.0 — 2026-06-05 15:16 IST
 
 First versioned checkpoint of the Hiliks website (homepage hero, layout polish,

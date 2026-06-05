@@ -250,7 +250,7 @@ section.band{position:relative;padding:var(--section-y) 0;z-index:3}
 .h-head{padding-block:64px 24px}
 .h-track{display:flex;gap:24px;padding:0 36px 60px;will-change:transform}
 .icard{flex:0 0 380px;height:440px;border:1px solid var(--line);border-radius:var(--r-lg);padding:34px;position:relative;overflow:hidden;
-  background:var(--panel);transition:border-color .4s,transform .4s;display:flex;flex-direction:column;justify-content:flex-end}
+  background:var(--panel);transition:border-color .4s,transform .4s;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;color:inherit}
 .icard .idx{position:absolute;top:24px;left:34px;font-family:var(--font-mono);font-size:1.97rem;font-weight:700;letter-spacing:.1em;color:var(--ac,var(--orange))}
 .icard .flag-pill{position:absolute;top:22px;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:12.4px;letter-spacing:.16em;text-transform:uppercase;color:#06080c;background:var(--ac,var(--orange));padding:4px 12px;border-radius:20px;font-weight:700;white-space:nowrap}
 .icard .media{position:absolute;top:0;right:0;width:60%;height:55%;opacity:.5;
@@ -394,8 +394,10 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:60px 0 50px;posi
 .spotlight:hover>.spot{opacity:1}
 .cap>*,.why>*,.flagship>.flagship-inner,.flagship>.flag-tag{position:relative;z-index:1}
 
-/* side HUD */
-.hud{position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:45;display:flex;flex-direction:column;gap:14px}
+/* side HUD — hidden by default (e.g. on the hero); .show is toggled on once the
+   hero is scrolled past, so the indicator only appears from Railways onward. */
+.hud{position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:45;display:flex;flex-direction:column;gap:14px;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.hud.show{opacity:1;pointer-events:auto}
 .hud a{display:flex;align-items:center;gap:10px;justify-content:flex-end;text-decoration:none;
   font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;color:var(--muted-2);text-transform:uppercase;transition:.3s}
 .hud a .d{width:8px;height:8px;border-radius:50%;border:1px solid var(--line-2);transition:.3s}
