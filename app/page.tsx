@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Hero3D from '@/components/Hero3D';
 import Marquee from '@/components/Marquee';
 import AIBand from '@/components/AIBand';
@@ -330,11 +331,22 @@ export default function Home() {
         <div className="wrap">
           <div className="cta-band reveal">
             <div className="glow" aria-hidden />
-            <h3>Engineering-led technology for your industry &mdash; with a particularly strong Railways practice.</h3>
-            <p>Request a briefing or route your inquiry by vertical: Railways, Telecom, BFSI, Public Sector, Real Estate, Oil &amp; Gas, Energy &amp; Utilities, or Partnerships.</p>
-            <div className="cta-row">
-              <Link href="/contact" className="btn btn-primary" data-mag data-c>Request a Briefing &rarr;</Link>
-              <Link href="/contact" className="btn btn-ghost" data-mag data-c>Send Inquiry</Link>
+            <div className="cta-copy">
+              <h3>Engineering-led technology for your industry &mdash; with a particularly strong Railways practice.</h3>
+              <p>Request a briefing or route your inquiry by vertical: Railways, Telecom, BFSI, Public Sector, Real Estate, Oil &amp; Gas, Energy &amp; Utilities, or Partnerships.</p>
+              <div className="cta-row">
+                <Link href="/contact" className="btn btn-primary" data-mag data-c>Request a Briefing &rarr;</Link>
+                <Link href="/contact" className="btn btn-ghost" data-mag data-c>Send Inquiry</Link>
+              </div>
+            </div>
+            <div className="cta-media">
+              <Image
+                src="/images/contact-verticals.png"
+                alt="Hiliks industry verticals — Railways, Telecom, BFSI, Public Sector, Real Estate, Oil &amp; Gas, Energy &amp; Utilities, and Partnerships"
+                width={1536}
+                height={1024}
+                sizes="(max-width: 900px) 92vw, 46vw"
+              />
             </div>
           </div>
         </div>
