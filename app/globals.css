@@ -407,12 +407,14 @@ section.band{position:relative;padding:var(--section-y) 0;z-index:3}
 
 /* FOOTER */
 footer{border-top:1px solid var(--line);margin-top:56px;padding:60px 0 50px;position:relative;z-index:3}
-/* center the footer content group (meta + link columns) instead of pushing them
-   to opposite edges, so the columns sit toward the middle of the page */
-.foot{display:flex;justify-content:center;gap:clamp(40px,7vw,110px);flex-wrap:wrap}
+/* align the footer content group (meta + link columns) to the left so it reads
+   left-to-right from the page gutter */
+.foot{display:flex;align-items:flex-start;justify-content:flex-start;gap:clamp(40px,7vw,110px);flex-wrap:wrap}
 .foot .meta{color:var(--muted);font-size:13px;line-height:2;font-weight:300}
 .foot .meta b{color:var(--text);font-weight:500}
-.foot-cols{display:flex;gap:60px;flex-wrap:wrap}
+/* the three link columns take the remaining width and split it equally,
+   spreading out to the right margin */
+.foot-cols{flex:1;min-width:420px;display:grid;grid-template-columns:repeat(3,1fr);gap:60px}
 .foot-col h6{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);margin-bottom:14px}
 .foot-col a{display:block;color:var(--muted);text-decoration:none;font-size:13.5px;padding:4px 0;transition:.25s}
 .foot-col a:hover{color:var(--orange)}
@@ -614,9 +616,9 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:60px 0 50px;posi
   .stats{grid-template-columns:1fr 1fr;gap:12px}.stat{padding:22px}.stat .v{font-size:2rem}
   .cta-band{padding:44px 24px}
   footer{margin-top:80px;padding:46px 0 40px}
-  .foot{flex-direction:column;gap:34px}.foot-cols{gap:38px}
+  .foot{flex-direction:column;gap:34px}.foot-cols{min-width:0;grid-template-columns:repeat(2,1fr);gap:38px}
 }
-@media(max-width:380px){.stats{grid-template-columns:1fr}}
+@media(max-width:380px){.stats{grid-template-columns:1fr}.foot-cols{grid-template-columns:1fr}}
 
 /* —— responsiveness hardening (#15) —— */
 @media(max-width:640px){
