@@ -41,6 +41,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
+        {/* The pre-loader overlay is server-rendered so it covers the page from
+            the first paint; JS fades it out once loading completes. If JS is
+            disabled it would never fade, so hide it for no-JS users.
+            dangerouslySetInnerHTML avoids React trying to hydrate <noscript>
+            children (which browsers parse as text when JS is on → mismatch). */}
+        <noscript dangerouslySetInnerHTML={{ __html: '<style>#page-loader{display:none!important}</style>' }} />
       </head>
       <body>
         <LenisProvider>

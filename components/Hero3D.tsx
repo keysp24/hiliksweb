@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type * as ThreeNS from 'three';
 
 /**
@@ -10,10 +10,70 @@ export default function Hero3D() {
   const ref = useRef<HTMLCanvasElement | null>(null);
   const scrollTRef = useRef(0);
 
+  // The 3D scene shows on desktop/tablet (anchored right) and is hidden on
+  // phones. Gating with state means the heavy Three.js init never runs on small
+  // screens (saving battery/CPU/load), and the scene spins up or tears down
+  // cleanly if the viewport crosses the breakpoint (e.g. rotating a tablet).
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const mq = window.matchMedia('(min-width: 901px)');
+    const update = () => setEnabled(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  // Anchor the scene's LEFT edge to the "Contact" nav item so the animated
+  // object spans from there across to the right viewport edge (under the
+  // Talk-to-Experts CTA). The nav lives inside a centred max-1280px container,
+  // so the Contact item drifts toward the middle on wide monitors — measuring
+  // its live position every resize keeps the object aligned to it at ANY size
+  // (1080p, ultrawide, iPad landscape …). On phones/tablets <901px the scene is
+  // display:none via CSS, so we simply clear the inline box there.
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const position = () => {
+      if (window.innerWidth < 901) {
+        canvas.style.left = '';
+        canvas.style.right = '';
+        canvas.style.width = '';
+        return;
+      }
+      const links = Array.from(document.querySelectorAll<HTMLElement>('#hdr nav a'));
+      const contact = links.find((a) => /contact/i.test(a.textContent || ''));
+      const anchor = contact || document.querySelector<HTMLElement>('#hdr .nav-cta');
+      if (!anchor) return;
+      // left = the Contact item's x; right edge = the visible viewport edge
+      // (clientWidth excludes the scrollbar). The box is the offset-parent .hero,
+      // which is full-bleed, so these viewport coords map 1:1. We set an EXPLICIT
+      // px width (not width:auto) because a <canvas> with auto width lays out at
+      // its drawing-buffer size, which Three.js drives — that feeds back into the
+      // box and makes it grow without bound.
+      const left = Math.round(anchor.getBoundingClientRect().left);
+      const width = Math.max(1, Math.round(document.documentElement.clientWidth - left));
+      canvas.style.left = `${left}px`;
+      canvas.style.right = 'auto';
+      canvas.style.width = `${width}px`;
+    };
+    position();
+    // Re-measure after fonts/layout settle and on every resize.
+    const raf = requestAnimationFrame(position);
+    window.addEventListener('resize', position);
+    window.addEventListener('load', position);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', position);
+      window.removeEventListener('load', position);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
+    const canvas = ref.current;
+    if (!canvas) return;
 
     let disposed = false;
     let cleanup = () => {};
@@ -64,8 +124,12 @@ export default function Hero3D() {
       scene.add(pF);
 
       const helix = new THREE.Group();
+      // `radius` is the coil's horizontal radius — it widens the helix (X/Z
+      // spread + rung length) WITHOUT affecting its height, which is set by
+      // `count * spacing`. Bumped 3.4 → 4.7 to make the hero helix wider only.
+      // Spheres stay round (their geometry is separate from this radius).
       const count = 58,
-        radius = 3.4,
+        radius = 4.7,
         spacing = 0.46,
         step = 0.34;
       const ballGeo = new THREE.SphereGeometry(0.17, 16, 16);
@@ -186,15 +250,33 @@ export default function Hero3D() {
       window.addEventListener('mousemove', onMove);
 
       const resize = () => {
-        const w = window.innerWidth,
-          h = window.innerHeight;
-        renderer.setSize(w, h, false);
+        // Size the renderer to the canvas's OWN box (set by CSS), not the
+        // window. The scene is full-bleed on phones/tablets but anchored to the
+        // right ~56vw on desktop — measuring the element keeps the helix crisp
+        // and correctly proportioned at any screen size or pixel density.
+        const rect = canvas.getBoundingClientRect();
+        const w = Math.max(1, Math.round(rect.width)),
+          h = Math.max(1, Math.round(rect.height));
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, w < 760 ? 1.5 : 2));
+        renderer.setSize(w, h, false);
         cam.aspect = w / h;
         cam.updateProjectionMatrix();
-        helix.scale.setScalar(Math.min(1, w / 820));
-        baseZ = w < 560 ? 27 : w < 900 ? 24 : 22;
+        // Fit the helix to its column, then enlarge so it fills the wider
+        // Contact→edge span. Math.min(1, w/760) keeps it responsive — shrinking
+        // on narrow boxes so it never overflows, reaching full size on wider
+        // ones — and the multiplier sets the overall footprint. Apparent size is
+        // a fixed fraction of the box, so a bigger monitor → a proportionally
+        // bigger helix automatically (perspective framing is resolution-independent).
+        helix.scale.setScalar(Math.min(1, w / 760) * 2.0);
+        // Pull the camera back when the column is narrow/short so the strands
+        // stay fully framed within whatever box the viewport gives us.
+        baseZ = w < 520 ? 27 : w < 820 ? 24 : 22;
       };
+      // React to the canvas box changing — breakpoints, orientation, container
+      // resizes — and to window resize (which also covers DPR changes when a
+      // window moves between monitors of different pixel density).
+      const ro = new ResizeObserver(resize);
+      ro.observe(canvas);
       window.addEventListener('resize', resize);
       resize();
 
@@ -214,8 +296,9 @@ export default function Hero3D() {
       const loop = () => {
         t += 0.01;
         const scrollT = scrollTRef.current;
-        // Slow, steady rotation everywhere — scroll no longer accelerates spin (#3)
-        helix.rotation.y += 0.0014;
+        // Continuous full 360° spin around the vertical axis, steady everywhere
+        // (scroll no longer accelerates it). Speed bumped +20% (0.0014 → 0.00168).
+        helix.rotation.y += 0.00168;
         helix.position.y = scrollT * 6;
         pts.rotation.y = t * 0.04;
         grid.position.z = ((t * 3) % 4) - 2;
@@ -235,6 +318,7 @@ export default function Hero3D() {
       cleanup = () => {
         cancelAnimationFrame(raf);
         st.kill();
+        ro.disconnect();
         window.removeEventListener('mousemove', onMove);
         window.removeEventListener('resize', resize);
         ballGeo.dispose();
@@ -253,7 +337,9 @@ export default function Hero3D() {
       disposed = true;
       cleanup();
     };
-  }, []);
+  }, [enabled]);
 
-  return <canvas id="scene" ref={ref} aria-hidden style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }} />;
+  // Positioning lives in CSS (#scene) so media queries can anchor it to the
+  // right on desktop vs. full-bleed on small screens.
+  return <canvas id="scene" ref={ref} aria-hidden />;
 }
