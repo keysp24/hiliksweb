@@ -1,11 +1,12 @@
 # Hiliks Web — Worklog & Backlog
 
-**Last updated:** 2026-06-05
+**Last updated:** 2026-07-14
 **Repository:** `keysp24/hiliksweb` (GitHub, **public**)
 **Live site:** https://hiliksweb.vercel.app (auto-deploys from `main` via Vercel)
 **Local project path:** `D:\projects\amalyte\hiliks\hiliksweb`
 **Stack:** Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · GSAP/ScrollTrigger · Lenis (smooth scroll) · Three.js (hero 3D)
-**Current released version:** **v1.1.0**
+**Current released version:** **v1.2.0**
+**Active work mode:** Local dev server testing — no Vercel production deployments until explicitly requested.
 
 ---
 
@@ -67,6 +68,21 @@ First versioned checkpoint. See section 4 for the detailed changes bundled here.
 - **Mega menu** on Industries & Solutions (see 4.6).
 - **Contact CTA image** (see 4.4).
 - **Route-change crash fix** (see 4.7).
+
+GitHub Releases: https://github.com/keysp24/hiliksweb/releases
+
+### v1.2.0 — 2026-07-14 11:47 IST — Investors page, CMS, cursor polish
+- **Investors page** (`/investors`) built Infosys-style with animated hero, stats ticker,
+  latest news grid, recent news list, investor toolkit, information grid, document browser
+  with year/quarter filters, and board committees.
+- **CMS implementation** — all Investors page content driven by `lib/investors-cms.ts`.
+- **Investor documents** — scraped from https://www.hiliks.com/investors.html, 364 PDFs
+  downloaded and organised under `public/investors/reports/` (kept out of Git due to ~547 MB size).
+- **Investor manifest** — auto-generated `lib/investors.ts` + `lib/investors-committees.ts`.
+- **Navigation** — added Investors to primary nav and mobile menu.
+- **Hero visibility fix** — improved contrast, lighter gradients, text shadows, stronger card borders.
+- **Custom cursor fix** — removed orange ring highlight on interactive elements that already
+  have hover border effects (e.g. "Talk to Experts").
 
 GitHub Releases: https://github.com/keysp24/hiliksweb/releases
 
@@ -215,6 +231,9 @@ These are recommendations, not committed work. Confirm before any are built.
 | Footer / Marquee | `components/Footer.tsx`, `components/Marquee.tsx` |
 | Content data | `lib/site.ts` (nav, verticals, capabilities), `lib/case-studies.ts` |
 | Contact route (form) | `app/contact/page.tsx`, `app/contact/ContactForm.tsx` |
+| Investors page | `app/investors/page.tsx`, `lib/investors-cms.ts`, `lib/investors.ts`, `lib/investors-committees.ts` |
+| Investors components | `components/InvestorHero.tsx`, `components/InvestorTicker.tsx`, `components/InvestorNewsGrid.tsx`, `components/InvestorRecentNews.tsx`, `components/InvestorToolkit.tsx`, `components/InvestorInfoGrid.tsx`, `components/InvestorDocumentBrowser.tsx` |
+| Investor PDFs | `public/investors/reports/` (local only, not in Git) |
 | Changelog | `CHANGELOG.md` (repo root) |
 
 ---

@@ -2,6 +2,33 @@
 
 All notable changes to the Hiliks website are recorded here.
 
+---
+
+## v1.2.0 — 2026-07-14 11:47 IST
+
+Investors page, CMS, and cursor polish.
+
+### Added
+- **Investors page** (`/investors`) benchmarked against Infosys investor page layout:
+  - Animated hero section with headline, CTAs, and floating glass cards.
+  - Animated stats ticker (BSE listing, incorporated year, countries, partners).
+  - Corporate governance philosophy section.
+  - Latest News 4-card grid and Recent News list.
+  - Investor Toolkit cards (Corporate Governance, Financial Results, Shareholding, Disclosures).
+  - Investor Information quick-link grid.
+  - Document browser with category tabs and year/quarter filters.
+  - Board Committees section (Audit, Nomination & Remuneration, Stakeholders Relationship).
+- **CMS layer** for Investors page via `lib/investors-cms.ts` — all content editable without touching components.
+- **Investor document manifest** (`lib/investors.ts`) and committee data (`lib/investors-committees.ts`).
+- **Investors navigation** added to primary nav and mobile menu.
+- Downloaded and organised Hiliks investor PDFs under `public/investors/reports/` (not committed to Git due to size).
+
+### Changed
+- **Hero visibility** on Investors page — improved contrast, lighter background gradients, text shadows, and more visible glass cards.
+
+### Fixed
+- **Custom cursor overlap** — removed the cursor ring's orange highlight/enlargement on interactive elements that already have their own hover border effects (e.g. "Talk to Experts" button).
+
 Each release below is also **tagged in git** (e.g. `v1.0.0`) and published as a
 **GitHub Release**, so any past version can be identified by name + date and
 restored at any time:
