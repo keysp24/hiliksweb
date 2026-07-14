@@ -24,9 +24,6 @@ export const inquiryRouting: Record<string, string> = {
   'Telecom': 'hr@hiliks.com',
   'BFSI': 'hr@hiliks.com',
   'Public Sector': 'hr@hiliks.com',
-  'Real Estate': 'hr@hiliks.com',
-  'Oil & Gas': 'hr@hiliks.com',
-  'Energy & Utilities': 'hr@hiliks.com',
   'Partnerships': 'hr@hiliks.com',
 };
 
@@ -38,13 +35,14 @@ export type Vertical = {
   name: string;
   unit: string;
   flagship?: boolean;
+  hidden?: boolean;
   accentVar: string;
   tagline: string;
   blurb: string;
   capabilities: { n: string; t: string; d?: string }[];
 };
 
-export const verticals: Vertical[] = [
+const allVerticals: Vertical[] = [
   {
     slug: 'railways',
     name: 'Railways',
@@ -109,6 +107,7 @@ export const verticals: Vertical[] = [
     slug: 'real-estate',
     name: 'Real Estate',
     unit: 'Hiliks Real Estate',
+    hidden: true,
     accentVar: '--v-realestate',
     tagline: 'Smart, Connected Properties',
     blurb: 'Smart buildings, ECM, ERP, tenant systems, operations.',
@@ -123,6 +122,7 @@ export const verticals: Vertical[] = [
     slug: 'oil-gas',
     name: 'Oil & Gas',
     unit: 'Hiliks Oil & Gas',
+    hidden: true,
     accentVar: '--v-oil',
     tagline: 'Industrial Operations Intelligence',
     blurb: 'Industrial systems, compliance, operations intelligence, engineering.',
@@ -137,6 +137,7 @@ export const verticals: Vertical[] = [
     slug: 'energy-utilities',
     name: 'Energy & Utilities',
     unit: 'Hiliks Energy & Utilities',
+    hidden: true,
     accentVar: '--v-energy',
     tagline: 'Reliable, Predictive Utility Operations',
     blurb: 'Asset monitoring, predictive maintenance, field systems, automation.',
@@ -148,6 +149,10 @@ export const verticals: Vertical[] = [
     ],
   },
 ];
+
+// Publicly surfaced verticals only. Hidden verticals remain in allVerticals for
+// future roadmap re-activation without losing content or routing configuration.
+export const verticals: Vertical[] = allVerticals.filter((v) => !v.hidden);
 
 export type Capability = { slug: string; n: string; name: string; blurb: string; isAi?: boolean; icon: string };
 

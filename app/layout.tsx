@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: `%s · ${company.name}`,
   },
   description:
-    'Hiliks Technologies — a niche, engineering-led enterprise technology company for critical industries, with a flagship Railways practice. Serving railways, telecom, BFSI, public sector, real estate, oil & gas and energy across India and the GCC.',
+    'Hiliks Technologies — a niche, engineering-led enterprise technology company for critical industries, with a flagship Railways practice. Serving railways, telecom, BFSI and public sector across India and the GCC.',
   keywords: [
     'Hiliks', 'railway signaling', 'Kavach', 'TCAS', 'enterprise technology',
     'digital engineering', 'GCC', 'telecom OSS BSS', 'predictive maintenance',

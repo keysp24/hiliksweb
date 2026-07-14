@@ -47,7 +47,6 @@ export default function Footer() {
             <Link href="/industries/telecom" data-c>Telecom</Link>
             <Link href="/industries/bfsi" data-c>BFSI</Link>
             <Link href="/industries/public-sector" data-c>Public Sector</Link>
-            <Link href="/industries/energy-utilities" data-c>Energy &amp; Utilities</Link>
           </div>
           <div className="foot-col">
             <h6>Solutions</h6>

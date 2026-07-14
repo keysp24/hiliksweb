@@ -5,7 +5,7 @@
 **Live site:** https://hiliksweb.vercel.app (auto-deploys from `main` via Vercel)
 **Local project path:** `D:\projects\amalyte\hiliks\hiliksweb`
 **Stack:** Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · GSAP/ScrollTrigger · Lenis (smooth scroll) · Three.js (hero 3D)
-**Current released version:** **v1.2.0**
+**Current released version:** **v1.3.0**
 **Active work mode:** Local dev server testing — no Vercel production deployments until explicitly requested.
 
 ---
@@ -86,6 +86,26 @@ GitHub Releases: https://github.com/keysp24/hiliksweb/releases
 
 GitHub Releases: https://github.com/keysp24/hiliksweb/releases
 
+### v1.3.0 — 2026-07-14 22:00 IST — Hide Real Estate, Oil & Gas, Energy & Utilities
+- **Verticals hidden** from public site (client future roadmap): Real Estate, Oil & Gas,
+  Energy & Utilities. Achieved by adding a `hidden` flag in `lib/site.ts` and exporting
+  `verticals` as a filtered view of `allVerticals`.
+- **Pages updated automatically** via the filtered data source:
+  - `/industries` grid + metadata show only Railways, Telecom, BFSI, Public Sector.
+  - `/industries/[slug]` generates only the four public vertical detail pages.
+  - Mega menu, footer Industries column, case-study filters, sitemap, dynamic verticals
+    marquee, and solution "related industries" cards all surface only public verticals.
+- **Copy updates** — homepage hero sub-headline, contact CTA paragraph, contact image alt
+  text, and root `metadata.description` in `app/layout.tsx` now list only the four public
+  verticals (plus Partnerships where applicable).
+- **Contact form** — inquiry routing pills reduced to Railways, Telecom, BFSI, Public
+  Sector and Partnerships; `inquiryRouting` map pruned accordingly.
+- **Backward compatibility** — hidden vertical content modules and their route files remain
+  in the codebase; re-activation only requires removing `hidden: true` from `lib/site.ts`.
+- **Build verified** with `npm run build`; 38 static pages generated successfully.
+
+GitHub Releases: https://github.com/keysp24/hiliksweb/releases
+
 ---
 
 ## 4. Detailed changes (by area)
@@ -131,8 +151,7 @@ GitHub Releases: https://github.com/keysp24/hiliksweb/releases
 - **Theme:** Changed from the **light** (cream) theme to **dark** so it blends with
   the rest of the page instead of looking like a separate page.
 - **Image:** Embedded the industry-grid image (`public/images/contact-verticals.png`
-  — Railways, Telecom, BFSI, Public Sector, Real Estate, Oil & Gas, Energy &
-  Utilities, Partnership) on the **right side** of the band. It is **~20% larger**
+  — Railways, Telecom, BFSI, Public Sector, Partnership) on the **right side** of the band. It is **~20% larger**
   and **top-aligned** with the "Engineering-led…" headline (2-column grid). Stacks
   below the text on mobile.
 - Files: `app/page.tsx`, `app/globals.css` (`.cta-band`, `.cta-media`),
@@ -148,8 +167,9 @@ GitHub Releases: https://github.com/keysp24/hiliksweb/releases
 ### 4.6 Mega menu (new — v1.1.0)
 - **Industries** and **Solutions** nav items open **rich mega panels**: a 3-column
   grid of **icon + name + 2-line blurb**, plus a **"View all →"** link.
-  - Industries panel ← the 7 `verticals` (per-vertical accent icons via
-    `IndustryGlyph`), links to `/industries/<slug>`.
+  - Industries panel ← the public `verticals` (per-vertical accent icons via
+    `IndustryGlyph`), links to `/industries/<slug>`. As of v1.3.0 this is four
+    verticals (Railways, Telecom, BFSI, Public Sector).
   - Solutions panel ← the 8 `capabilities` (their SVG icons), links to
     `/solutions/<slug>`.
 - **Interaction:** opens on **hover** (desktop, 80ms open / 150ms close delay) or

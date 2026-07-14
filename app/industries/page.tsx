@@ -9,7 +9,7 @@ import { verticals } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'Industries',
   description:
-    'Verticalized, engineering-led practices for critical industries — Railways (flagship), Telecom, BFSI, Public Sector, Real Estate, Oil & Gas and Energy & Utilities.',
+    'Verticalized, engineering-led practices for critical industries — Railways (flagship), Telecom, BFSI and Public Sector.'
 };
 
 export default function IndustriesPage() {

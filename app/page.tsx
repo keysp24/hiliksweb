@@ -190,7 +190,7 @@ export default function Home() {
             <h1 className="hero-h">Engineering <em>Intelligent Operations</em> Across Critical Industries</h1>
             <p className="hero-sub">
               Niche technology, AI-native systems integration, engineering services and digital transformation &mdash;
-              for railways, telecom, BFSI, public sector, real estate, oil &amp; gas and energy &amp; utilities,
+              for railways, telecom, BFSI and public sector,
               across India and the GCC.
             </p>
             <div className="cta-row">
@@ -333,7 +333,7 @@ export default function Home() {
             <div className="glow" aria-hidden />
             <div className="cta-copy">
               <h3>Engineering-led technology for your industry &mdash; with a particularly strong Railways practice.</h3>
-              <p>Request a briefing or route your inquiry by vertical: Railways, Telecom, BFSI, Public Sector, Real Estate, Oil &amp; Gas, Energy &amp; Utilities, or Partnerships.</p>
+              <p>Request a briefing or route your inquiry by vertical: Railways, Telecom, BFSI, Public Sector, or Partnerships.</p>
               <div className="cta-row">
                 <Link href="/contact" className="btn btn-primary" data-mag data-c>Request a Briefing &rarr;</Link>
                 <Link href="/contact" className="btn btn-ghost" data-mag data-c>Send Inquiry</Link>
@@ -342,7 +342,7 @@ export default function Home() {
             <div className="cta-media">
               <Image
                 src="/images/contact-verticals.png"
-                alt="Hiliks industry verticals — Railways, Telecom, BFSI, Public Sector, Real Estate, Oil &amp; Gas, Energy &amp; Utilities, and Partnerships"
+                alt="Hiliks industry verticals — Railways, Telecom, BFSI, Public Sector, and Partnerships"
                 width={1536}
                 height={1024}
                 sizes="(max-width: 900px) 92vw, 46vw"

@@ -4,6 +4,25 @@ All notable changes to the Hiliks website are recorded here.
 
 ---
 
+## v1.3.0 — 2026-07-14 22:00 IST
+
+Hidden Real Estate, Oil & Gas, and Energy & Utilities verticals from the public site (client future roadmap).
+
+### Changed
+- **`lib/site.ts`** — added optional `hidden` flag to the `Vertical` type; marked Real Estate, Oil & Gas and Energy & Utilities as `hidden: true`; exported the public `verticals` array as a filtered view of `allVerticals`.
+- **Industry pages** — `/industries` metadata and grid now list only Railways, Telecom, BFSI and Public Sector; `/industries/[slug]` statically generates only those four vertical detail pages.
+- **Homepage** — hero sub-headline, contact CTA copy and contact image alt text updated to mention only the four public verticals.
+- **Footer** — removed the Energy & Utilities link from the Industries column.
+- **Contact form** — inquiry routing pills automatically reduced to the four public verticals plus Partnerships; `inquiryRouting` map updated accordingly.
+- **Dynamic verticals, case-study filters, sitemap, solutions related-industries, and mega menu** — all derive from the filtered `verticals` array and now surface only public verticals.
+- **Root metadata** — `app/layout.tsx` site description updated to list only the four public verticals.
+
+### Notes
+- Hidden vertical content modules (`real-estate`, `oil-gas`, `energy-utilities`) and their route files remain in the codebase so they can be re-activated quickly by removing `hidden: true` from `lib/site.ts`.
+- Some capability blurbs and insight articles still reference energy/utilities/oil & gas as example domains; these were left intact because they describe capability applicability rather than promote hidden vertical pages.
+
+---
+
 ## v1.2.0 — 2026-07-14 11:47 IST
 
 Investors page, CMS, and cursor polish.
