@@ -204,6 +204,7 @@ export const primaryNav = [
   { label: 'Railways', href: '/industries/railways' },
   { label: 'Solutions', href: '/solutions' },
   { label: 'Ecosystem', href: '/ecosystem' },
+  { label: 'Investors', href: '/investors' },
   { label: 'Contact', href: '/contact' },
 ];
 

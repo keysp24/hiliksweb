@@ -16,9 +16,6 @@ export default function Cursor() {
     const move = (e: MouseEvent) => {
       x = e.clientX; y = e.clientY;
       dot.style.transform = `translate(${x}px,${y}px) translate(-50%,-50%)`;
-      const t = e.target as HTMLElement;
-      const interactive = t.closest('a,button,[data-c],.icard,.cap,.why,.rail-cap');
-      ring.classList.toggle('big', !!interactive);
     };
     const raf = () => {
       rx += (x - rx) * 0.18; ry += (y - ry) * 0.18;
