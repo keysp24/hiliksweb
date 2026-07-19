@@ -90,7 +90,7 @@ export default function HeroRings() {
           </linearGradient>
         </defs>
         {rings.map((ring, i) => (
-          <g key={i} ref={setRingRef(i)} transformOrigin="450 450">
+          <g key={i} ref={setRingRef(i)} style={{ transformOrigin: '450px 450px' }}>
             <circle
               cx="450"
               cy="450"
