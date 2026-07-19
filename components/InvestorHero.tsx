@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 export default function InvestorHero({
@@ -18,71 +18,14 @@ export default function InvestorHero({
 }) {
   const containerRef = useRef<HTMLElement>(null);
   const spotlightRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    let ctx: { revert: () => void } | null = null;
-
-    (async () => {
-      const gsap = (await import('gsap')).default;
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      gsap.registerPlugin(ScrollTrigger);
-
-      ctx = gsap.context(() => {
-        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-        tl.from(container.querySelectorAll('.inv-hero-eyebrow'), {
-          y: 30,
-          opacity: 0,
-          duration: 0.8,
-          delay: 0.1,
-        })
-          .from(
-            container.querySelectorAll('.inv-hero-title'),
-            { y: 40, opacity: 0, duration: 1 },
-            '-=0.5'
-          )
-          .from(
-            container.querySelectorAll('.inv-hero-sub'),
-            { y: 30, opacity: 0, duration: 0.9 },
-            '-=0.6'
-          )
-          .from(
-            container.querySelectorAll('.inv-hero-cta'),
-            { y: 24, opacity: 0, duration: 0.7, stagger: 0.1 },
-            '-=0.5'
-          )
-          .from(
-            container.querySelectorAll('.inv-hero-card'),
-            { y: 50, opacity: 0, duration: 0.9, stagger: 0.12 },
-            '-=0.6'
-          );
-
-        gsap.to(container.querySelector('.inv-hero-glow'), {
-          scale: 1.12,
-          opacity: 0.6,
-          duration: 8,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-        });
-
-        gsap.to(container.querySelectorAll('.inv-hero-blob'), {
-          y: -24,
-          x: 16,
-          duration: 6,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut',
-          stagger: { each: 2, from: 'random' },
-        });
-      }, container);
-    })().catch(() => {});
-
-    return () => {
-      if (ctx) ctx.revert();
-    };
+    // Small delay so the browser paints the initial hidden state before
+    // triggering the entrance animation on both first load and client-side
+    // navigation.
+    const timer = window.setTimeout(() => setVisible(true), 50);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
@@ -119,7 +62,7 @@ export default function InvestorHero({
   return (
     <section
       ref={containerRef}
-      className="inv-hero"
+      className={`inv-hero ${visible ? 'is-visible' : ''}`}
       onMouseMove={handleMouseMove}
     >
       <div className="inv-hero-glow" aria-hidden />
