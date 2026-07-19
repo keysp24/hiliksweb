@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import Reveal from '@/components/Reveal';
 import CtaBand from '@/components/CtaBand';
@@ -42,15 +41,6 @@ export default function AboutPage() {
     <>
       {/* Hero */}
       <section className="about-hero">
-        <Image
-          src="/images/about/hero-bg.jpg"
-          alt=""
-          fill
-          priority
-          className="about-hero-bg"
-          sizes="100vw"
-          style={{ objectFit: 'cover' }}
-        />
         <div className="wrap">
           <Reveal>
             <div className="kicker" style={{ justifyContent: 'center' }}>
@@ -152,7 +142,7 @@ export default function AboutPage() {
                 <ul>
                   {card.points.map((pt) => (
                     <li key={pt}>
-                      <CheckIcon />
+                      <span className="mv-bullet" aria-hidden />
                       <span>{pt}</span>
                     </li>
                   ))}

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import HeroRings from './HeroRings';
 
 export default function InvestorHero({
   eyebrow,
@@ -70,6 +71,8 @@ export default function InvestorHero({
       <div className="inv-hero-blob inv-hero-blob--orange" aria-hidden />
       <div className="inv-hero-blob inv-hero-blob--blue" aria-hidden />
       <div className="inv-hero-blob inv-hero-blob--purple" aria-hidden />
+
+      <HeroRings />
 
       <div className="wrap">
         <div className="inv-hero-grid">
