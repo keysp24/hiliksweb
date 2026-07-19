@@ -488,6 +488,14 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:60px 0 50px;posi
 
 /* interior page helpers */
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-top:48px}
+/* Applied across (solution detail pages): 4 small industry cards in one row */
+.card-grid.applied-grid{grid-template-columns:repeat(4,1fr);gap:16px}
+.card-grid.applied-grid .icard.vcard{height:auto;min-height:170px;padding:20px 18px 18px;padding-top:92px;justify-content:flex-start;text-align:center}
+.card-grid.applied-grid .icard.vcard h4{font-size:1.05rem;line-height:1.1}
+.card-grid.applied-grid .icard .igfx{width:60px;height:60px;top:18px;right:50%;transform:translateX(50%)}
+.card-grid.applied-grid .icard .idx{top:16px;left:18px;font-size:1.15rem}
+@media(max-width:900px){.card-grid.applied-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.card-grid.applied-grid{grid-template-columns:1fr}}
 /* Industries: Railways (flagship) is a short, full-width feature row on top,
    then the remaining 6 verticals fill 2 rows of 3. */
 .card-grid.verticals-grid{grid-template-columns:repeat(3,1fr)}

@@ -3,11 +3,11 @@ import type { IndustryContent } from './types';
 const content: IndustryContent = {
   slug: 'bfsi',
   heroLead:
-    'Automation, ECM and AI for banks, financial services and insurers — engineering digital, compliant operations from onboarding to compliance, across India and the GCC.',
+    'Automation, ECM and AI for banks, financial services and insurers — engineering digital, compliant operations from onboarding to compliance, across India and the GCC, with consulting and talent solutions that deliver the people behind the transformation.',
   overview: [
     'Hiliks BFSI brings engineering discipline to the operational core of banks, financial-services firms and insurers. We digitise and automate the document-heavy, control-heavy processes — onboarding, KYC, account servicing, claims and case work — so institutions move faster without loosening the controls regulators demand.',
     'Financial operations live and die by documents, evidence and auditability. We combine enterprise content management, workflow automation and intelligent document processing to turn paper-bound, manual processes into straight-through digital journeys — every action captured, every decision traceable, every record retained to policy.',
-    'Where it changes outcomes, we layer AI: document intelligence to read and classify what arrives, analytics to surface risk, and models to flag fraud and anomalies. The result is a financial back office that is faster, cheaper to run and continuously compliant — delivered across India and the GCC.',
+    'Where it changes outcomes, we layer AI: document intelligence to read and classify what arrives, analytics to surface risk, and models to flag fraud and anomalies. The result is a financial back office that is faster, cheaper to run and continuously compliant — delivered across India and the GCC. Our consulting and talent practice ensures institutions also secure the leadership, compliance and automation specialists who make transformation sustainable.'
   ],
   stats: [
     { value: 'STP', label: 'Straight-through processing' },
@@ -30,18 +30,21 @@ const content: IndustryContent = {
     { n: '04', title: 'AI & Document Intelligence', desc: 'AI that reads, classifies and understands financial documents to remove manual effort and surface risk.', points: ['Intelligent document processing & OCR', 'Automated classification & extraction', 'Document validation & exception handling', 'Analytics on operational & customer data'] },
     { n: '05', title: 'Fraud & Anomaly Detection', desc: 'Machine learning that flags suspicious activity and anomalies across transactions and case work.', points: ['Transaction anomaly detection', 'Fraud-risk scoring models', 'Alerting & investigation workflows', 'Continuous model monitoring'] },
     { n: '06', title: 'Core & Systems Integration', desc: 'Clean integration across core banking, lending, claims and CRM to end swivel-chair work.', points: ['Core banking & policy-admin integration', 'API & middleware engineering', 'Data synchronisation across systems', 'Legacy modernisation without disruption'] },
+    { n: '07', title: 'Consulting & Talent', desc: 'Consulting and talent solutions for financial services — executive search, direct hire and contract professionals for regulated transformation.', points: ['Executive search for digital banking & insurance leaders', 'Direct hire for compliance and operations talent', 'Contract hire for transformation and regulatory programs', 'Solution design & performance optimization'] },
   ],
   approach: [
     { step: '01', title: 'Map the process & controls', desc: 'We start from the regulated process — documents, decisions, controls and audit needs — before any automation is designed.' },
     { step: '02', title: 'Digitise the content', desc: 'We capture and structure documents into ECM so every record is classified, secure, retained and retrievable.' },
     { step: '03', title: 'Automate the workflow', desc: 'We orchestrate onboarding, KYC and case work into straight-through digital journeys with controls built in.' },
     { step: '04', title: 'Apply intelligence', desc: 'We layer document intelligence, analytics and fraud models to remove manual effort and surface risk early.' },
+    { step: '05', title: 'Build the transformation team', desc: 'Our consulting and talent practice diagnoses leadership and capability gaps, designs the target operating model and fills critical roles through executive search, direct hire and contract staffing.' },
   ],
   outcomes: [
     { title: 'Faster onboarding', desc: 'Digital, automated journeys cut cycle times and cost-to-serve while improving the customer experience.' },
     { title: 'Continuous compliance', desc: 'Policy-driven controls and complete audit trails make KYC, AML and regulatory response repeatable and defensible.' },
     { title: 'Lower operational risk', desc: 'Document intelligence and fraud detection reduce error and loss across high-volume processing.' },
     { title: 'Decisions from data', desc: 'Analytics turn document and transaction data into timely risk, fraud and service insight.' },
+    { title: 'Ready transformation talent', desc: 'Compliance, digital and operations specialists are in place to sustain automation, controls and continuous improvement.' },
   ],
   tech: ['OpenText ECM', 'Enterprise content management', 'RPA / robotic process automation', 'Intelligent document processing & OCR', 'KYC / AML workflow', 'Core banking integration', 'API & middleware', 'Fraud-detection ML', 'Document-intelligence AI', 'Workflow orchestration (BPM)', 'e-Signature & records management', 'Azure / AWS'],
   faqs: [

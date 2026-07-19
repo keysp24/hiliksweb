@@ -120,9 +120,9 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
         <div className="wrap">
           <Reveal as="div" className="sec-num">Applied across</Reveal>
           <Reveal as="h2" className="sec-title">Where we deploy {cap.name}</Reveal>
-          <div className="card-grid">
+          <div className="card-grid applied-grid">
             {applied.map((v, i) => (
-              <IndustryCard key={v.slug} v={v} index={i} href={`/industries/${v.slug}`} showBlurb={false} minHeight={210} />
+              <IndustryCard key={v.slug} v={v} index={i} href={`/industries/${v.slug}`} showBlurb={false} />
             ))}
           </div>
         </div>

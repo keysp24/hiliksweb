@@ -3,14 +3,14 @@ import type { IndustryContent } from './types';
 const content: IndustryContent = {
   slug: 'railways',
   heroLead:
-    'From the track to the operations centre — signaling and safety, railway telecom, smart rail, OCC integration and AI-led operations for Indian Railways, Etihad Rail and GCC operators.',
+    'From the track to the operations centre — signaling and safety, railway telecom, smart rail, OCC integration and AI-led operations for Indian Railways, Etihad Rail and GCC operators, complemented by strategic consulting and specialized talent solutions.',
   overview: [
     'Hiliks Railways is our flagship business unit and the proof of our engineering-led approach. We engineer the safety-critical, mission-critical systems that move people and freight reliably — from interlocking and train control on the track, to the operations control centre where every signal, asset and decision converges.',
     'Rail is unforgiving: a single fault can halt a corridor, and every change must satisfy stringent safety, availability and regulatory requirements. We bring genuine engineering depth — not generic IT services — across signaling, trackside telecom, OFC backbone, smart-rail data systems and OCC integration, modernized with AI woven through operations.',
-    'We work across the Indian Railways ecosystem and GCC operators including Etihad Rail, combining domain credibility built on signaling, telecom and asset systems with modern data platforms, predictive maintenance and decision intelligence.',
+    'We work across the Indian Railways ecosystem and GCC operators including Etihad Rail, combining domain credibility built on signaling, telecom and asset systems with modern data platforms, predictive maintenance and decision intelligence. Our integrated consulting and talent practice delivers executive search, direct hire and contract staffing to build the leadership and specialist teams that make rail transformation stick.'
   ],
   stats: [
-    { value: '7', label: 'Rail capability areas' },
+    { value: '8', label: 'Rail capability areas' },
     { value: '24×7', label: 'OCC-grade operations' },
     { value: '99.9%', label: 'Availability targets engineered' },
     { value: 'GCC + India', label: 'Delivery footprint' },
@@ -31,18 +31,21 @@ const content: IndustryContent = {
     { n: '05', title: 'AI-Led Operations', desc: 'Analytics and automation that turn rail data into operational decisions.', points: ['Operational decision intelligence', 'Anomaly & incident detection', 'Automated alerting & response', 'Capacity & punctuality analytics'] },
     { n: '06', title: 'Predictive Maintenance', desc: 'Condition monitoring fused with AI to predict failures and extend asset life.', points: ['Condition-based monitoring', 'Failure prediction models', 'Rolling-stock & trackside health', 'Maintenance optimization'] },
     { n: '07', title: 'Enterprise Rail Systems', desc: 'ERP, ECM, workflow and asset management for the railway enterprise.', points: ['Enterprise asset management (EAM)', 'ECM & engineering document control', 'Workflow & maintenance management', 'Spares, inventory & logistics'] },
+    { n: '08', title: 'Consulting & Talent', desc: 'Strategic consulting and talent solutions that help rail operators build the leadership and specialist teams for transformation.', points: ['Executive search for rail leadership', 'Direct hire for signaling, telecom & OCC specialists', 'Contract hire for project surge & brownfield delivery', 'Diagnostic assessment & solution design'] },
   ],
   approach: [
     { step: '01', title: 'Engineer for safety first', desc: 'We start from safety integrity and compliance — interlocking logic, standards and verifiable safety cases.' },
     { step: '02', title: 'Integrate the operation', desc: 'We converge signaling, telecom, power and asset systems into the OCC for unified situational awareness.' },
     { step: '03', title: 'Instrument & sense', desc: 'We connect trackside and rolling stock so the operation produces reliable, real-time data.' },
     { step: '04', title: 'Apply intelligence', desc: 'We layer predictive maintenance and decision intelligence to move from reactive to proactive operations.' },
+    { step: '05', title: 'Build the transformation team', desc: 'Our consulting and talent practice diagnoses capability gaps, designs the right organisation and fills critical roles through executive search, direct hire and contract staffing.' },
   ],
   outcomes: [
     { title: 'Higher availability', desc: 'Fewer unplanned failures and faster recovery through condition monitoring and unified control.' },
     { title: 'Safer, compliant operations', desc: 'Auditable, standards-aligned signaling and safety engineering you can certify with confidence.' },
     { title: 'Lower maintenance cost', desc: 'Predictive maintenance extends asset life and shifts spend from emergency to planned work.' },
     { title: 'Decisions from data', desc: 'AI-led operations turn trackside and OCC data into punctuality and capacity gains.' },
+    { title: 'Ready transformation talent', desc: 'Leadership and specialist teams are in place to own, operate and continuously improve the rail transformation.' },
   ],
   tech: ['Interlocking & train control', 'SCADA', 'OFC / optical transport', 'GSM-R / train radio', 'IoT edge', 'Predictive-maintenance ML', 'Enterprise Asset Management', 'OpenText ECM', 'Azure / AWS', 'Time-series & streaming data'],
   faqs: [
