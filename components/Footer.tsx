@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { company } from '@/lib/site';
+import { company, capabilities } from '@/lib/site';
 
 export default function Footer() {
   return (
@@ -50,10 +50,11 @@ export default function Footer() {
           </div>
           <div className="foot-col">
             <h6>Solutions</h6>
-            <Link href="/solutions/digital-engineering" data-c>Digital Engineering</Link>
-            <Link href="/solutions/ai-analytics" data-c>AI &amp; Analytics</Link>
-            <Link href="/solutions/intelligent-automation" data-c>Automation</Link>
-            <Link href="/solutions/managed-services" data-c>Managed Services</Link>
+            {capabilities.map((cap) => (
+              <Link key={cap.slug} href={`/solutions/${cap.slug}`} data-c>
+                {cap.name}
+              </Link>
+            ))}
           </div>
           <div className="foot-col">
             <h6>Company</h6>
