@@ -4,6 +4,33 @@ All notable changes to the Hiliks website are recorded here.
 
 ---
 
+## v1.4.0 — 2026-07-19 14:00 IST
+
+Consulting & Talent integration across public verticals, solution-page layout polish, and build fixes.
+
+### Added
+- **Consulting & Talent as a core offering** across all four public industries:
+  - `lib/content/railways.ts` — added "Consulting & Talent" capability (#08), updated capability count to 8, added approach step 05 "Build the transformation team", and added outcome "Ready transformation talent".
+  - `lib/content/telecom.ts` — added "Consulting & Talent" capability (#07), approach step 05, and talent outcome.
+  - `lib/content/bfsi.ts` — added "Consulting & Talent" capability (#07), approach step 05, and talent outcome.
+  - `lib/content/public-sector.ts` — added "Consulting & Talent" capability (#07), approach step 05, and talent outcome.
+  - Each hero lead and overview now references consulting and specialized talent solutions.
+
+### Changed
+- **Solution detail "Applied across" grid** (`app/solutions/[slug]/page.tsx` + `app/globals.css`):
+  - Added `.applied-grid` modifier so the four industry cards render in a single compact row on desktop.
+  - Reduced card min-height, padding, title size, and glyph size so tiles fit their content.
+  - Responsive fallback: 2 columns on tablet, 1 column on mobile.
+
+### Fixed
+- **`components/HeroRings.tsx`** — replaced invalid SVG `transformOrigin` attribute with a CSS `style={{ transformOrigin: '450px 450px' }}` to resolve the TypeScript build error that was blocking Vercel deployments.
+
+### Deployment
+- Pushed to GitHub on branch `fix/footer-left-align-columns`.
+- Redeployed to Vercel preview successfully after the build fix.
+
+---
+
 ## v1.3.0 — 2026-07-14 22:00 IST
 
 Hidden Real Estate, Oil & Gas, and Energy & Utilities verticals from the public site (client future roadmap).
