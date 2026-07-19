@@ -10,6 +10,21 @@ type Props = {
   style?: React.CSSProperties;
 };
 
+let refreshTimer: number | undefined;
+
+function scheduleScrollTriggerRefresh() {
+  if (typeof window === 'undefined') return;
+  window.clearTimeout(refreshTimer);
+  refreshTimer = window.setTimeout(async () => {
+    try {
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      ScrollTrigger.refresh();
+    } catch {
+      /* ignore */
+    }
+  }, 120);
+}
+
 /**
  * Reveal-on-scroll: starts opacity:0, y:34; animates to opacity:1, y:0,
  * duration .9, ease 'power3.out', ScrollTrigger start 'top 88%'.
@@ -48,9 +63,15 @@ export default function Reveal({ children, as: Tag = 'div', className = '', dela
             trigger: el,
             start: 'top 88%',
             toggleActions: 'play none none none',
+            invalidateOnRefresh: true,
           },
         });
       }, el);
+
+      // Ensure newly-created triggers are re-evaluated alongside the rest of
+      // the page (critical after Next.js client-side navigation, where the
+      // route-change refresh may have already run before this Reveal mounted).
+      scheduleScrollTriggerRefresh();
     })().catch(() => {
       // safety: never leave content hidden if GSAP fails to load
       el.style.opacity = '1';

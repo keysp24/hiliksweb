@@ -72,27 +72,50 @@ export default function LenisProvider({ children }: { children: ReactNode }) {
     window.scrollTo(0, 0);
     let raf1 = 0;
     let raf2 = 0;
+    let t1 = 0;
+    let t2 = 0;
     (async () => {
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+
+      const refresh = () => {
+        try {
+          ScrollTrigger.refresh();
+        } catch {
+          /* transient route-change DOM race — safe to ignore */
+        }
+      };
+      const update = () => {
+        try {
+          ScrollTrigger.update();
+        } catch {
+          /* ignore */
+        }
+      };
+
       // Wait two frames so the outgoing page's pinned triggers (e.g. the
       // #industries pin) finish tearing their pin-spacers out of the DOM before
-      // we refresh. Guard the refresh too: if it still races a detached pin,
-      // GSAP throws "Cannot read properties of null (reading 'insertBefore')"
-      // inside its pin-swap — harmless here, and the next scroll/resize refresh
-      // recomputes positions correctly, so we must not let it crash the app.
+      // we refresh. Then refresh a couple more times with delays so Reveal and
+      // other async-mounted ScrollTrigger components get recalculated.
       raf1 = requestAnimationFrame(() => {
         raf2 = requestAnimationFrame(() => {
-          try {
-            ScrollTrigger.refresh();
-          } catch {
-            /* transient route-change DOM race — safe to ignore */
-          }
+          refresh();
+          update();
+          t1 = window.setTimeout(() => {
+            refresh();
+            update();
+            t2 = window.setTimeout(() => {
+              refresh();
+              update();
+            }, 250);
+          }, 120);
         });
       });
     })();
     return () => {
       cancelAnimationFrame(raf1);
       cancelAnimationFrame(raf2);
+      clearTimeout(t1);
+      clearTimeout(t2);
     };
   }, [pathname, lenis]);
 

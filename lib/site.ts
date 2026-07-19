@@ -210,6 +210,7 @@ export const primaryNav = [
   { label: 'Solutions', href: '/solutions' },
   { label: 'Ecosystem', href: '/ecosystem' },
   { label: 'Investors', href: '/investors' },
+  { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
 
