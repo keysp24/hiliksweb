@@ -4,6 +4,26 @@ All notable changes to the Hiliks website are recorded here.
 
 ---
 
+## v1.4.1 — 2026-07-19 16:00 IST
+
+Footer and homepage right-side navigation updates.
+
+### Added
+- **Homepage section indicator HUD** (`components/SectionIndicator.tsx`):
+  - Added `Investors` and `About` as permanent points in the right-side navigator.
+  - Section-anchor items still scroll smoothly to their homepage sections.
+  - New page-link items use Next.js `Link` and highlight when their target page is active.
+
+### Fixed
+- **Footer Solutions column** (`components/Footer.tsx`):
+  - Now renders all 8 capability links dynamically from `lib/site.ts` instead of only 4 hard-coded links.
+
+### Deployment
+- Pushed to GitHub on branch `fix/footer-left-align-columns`.
+- Redeployed to Vercel preview successfully.
+
+---
+
 ## v1.4.0 — 2026-07-19 14:00 IST
 
 Consulting & Talent integration across public verticals, solution-page layout polish, and build fixes.

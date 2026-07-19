@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const SECTIONS = [
@@ -9,6 +10,8 @@ const SECTIONS = [
   { id: 'why', label: 'Why Hiliks' },
   { id: 'ecosystem', label: 'Ecosystem' },
   { id: 'contact', label: 'Contact' },
+  { id: 'investors', label: 'Investors', href: '/investors' },
+  { id: 'about', label: 'About', href: '/about' },
 ];
 
 export default function SectionIndicator() {
@@ -45,6 +48,7 @@ export default function SectionIndicator() {
         }
 
         SECTIONS.forEach((s) => {
+          if (s.href) return; // page links are active by pathname, not scroll
           const el = document.getElementById(s.id);
           if (!el) return;
           ScrollTrigger.create({
@@ -68,21 +72,33 @@ export default function SectionIndicator() {
 
   return (
     <div className={`hud${visible ? ' show' : ''}`}>
-      {SECTIONS.map((s) => (
-        <a
-          key={s.id}
-          href={`#${s.id}`}
-          data-c
-          className={active === s.id ? 'on' : ''}
-          onClick={(e) => {
-            e.preventDefault();
-            document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth' });
-          }}
-        >
-          <span className="nm">{s.label}</span>
-          <span className="d" />
-        </a>
-      ))}
+      {SECTIONS.map((s) =>
+        s.href ? (
+          <Link
+            key={s.id}
+            href={s.href}
+            data-c
+            className={pathname === s.href ? 'on' : ''}
+          >
+            <span className="nm">{s.label}</span>
+            <span className="d" />
+          </Link>
+        ) : (
+          <a
+            key={s.id}
+            href={`#${s.id}`}
+            data-c
+            className={active === s.id ? 'on' : ''}
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            <span className="nm">{s.label}</span>
+            <span className="d" />
+          </a>
+        )
+      )}
     </div>
   );
 }
