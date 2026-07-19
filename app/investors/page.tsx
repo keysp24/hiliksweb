@@ -79,6 +79,7 @@ export default function InvestorsPage() {
       <InvestorToolkit
         eyebrow={cms.toolkit.eyebrow}
         title={cms.toolkit.title}
+        lead={cms.toolkit.lead}
         items={cms.toolkit.items}
       />
 

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225" width="400" height="225">
+  <defs>
+    <linearGradient id="q-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F131A"/>
+      <stop offset="50%" stop-color="#121822"/>
+      <stop offset="100%" stop-color="#0B0D11"/>
+    </linearGradient>
+    <linearGradient id="q-glass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.08)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.02)"/>
+    </linearGradient>
+    <linearGradient id="q-bar" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF9248"/>
+      <stop offset="100%" stop-color="#F2680E"/>
+    </linearGradient>
+    <linearGradient id="q-bar2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5CADFF"/>
+      <stop offset="100%" stop-color="#2E8FE0"/>
+    </linearGradient>
+    <filter id="q-blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <filter id="q-soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+  <rect width="400" height="225" fill="url(#q-bg)"/>
+  
+  <!-- ambient glows -->
+  <circle cx="320" cy="60" r="80" fill="#F2680E" opacity="0.12" filter="url(#q-blur)"/>
+  <circle cx="90" cy="170" r="70" fill="#2E8FE0" opacity="0.10" filter="url(#q-blur)"/>
+  
+  <!-- grid lines -->
+  <g opacity="0.06">
+    <path d="M0 45h400M0 90h400M0 135h400M0 180h400" stroke="#EEF2F7" stroke-width="1"/>
+    <path d="M50 0v225M150 0v225M250 0v225M350 0v225" stroke="#EEF2F7" stroke-width="1"/>
+  </g>
+  
+  <!-- main glass panel -->
+  <rect x="55" y="40" width="290" height="145" rx="16" fill="url(#q-glass)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+  <rect x="55" y="40" width="290" height="72" rx="16" fill="rgba(255,255,255,0.03)"/>
+  
+  <!-- header dots -->
+  <circle cx="80" cy="64" r="5" fill="#F2680E"/>
+  <circle cx="100" cy="64" r="5" fill="#5E6B7C"/>
+  <circle cx="120" cy="64" r="5" fill="#5E6B7C"/>
+  
+  <!-- glass chart bars -->
+  <rect x="85" y="105" width="28" height="55" rx="6" fill="url(#q-bar)" opacity="0.95"/>
+  <rect x="128" y="90" width="28" height="70" rx="6" fill="url(#q-bar2)" opacity="0.85"/>
+  <rect x="171" y="75" width="28" height="85" rx="6" fill="url(#q-bar)" opacity="0.95"/>
+  <rect x="214" y="60" width="28" height="100" rx="6" fill="url(#q-bar2)" opacity="0.85"/>
+  <rect x="257" y="45" width="28" height="115" rx="6" fill="url(#q-bar)" opacity="0.95"/>
+  
+  <!-- bar reflections -->
+  <rect x="85" y="105" width="28" height="55" rx="6" fill="url(#q-glass)" opacity="0.25"/>
+  
+  <!-- trend line -->
+  <path d="M99 145 L142 120 L185 100 L228 80 L271 55" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  <circle cx="99" cy="145" r="4" fill="#FFFFFF"/>
+  <circle cx="142" cy="120" r="4" fill="#FFFFFF"/>
+  <circle cx="185" cy="100" r="4" fill="#FFFFFF"/>
+  <circle cx="228" cy="80" r="4" fill="#FFFFFF"/>
+  <circle cx="271" cy="55" r="4" fill="#FFFFFF"/>
+  
+  <!-- small glass badge -->
+  <rect x="270" y="110" width="60" height="28" rx="14" fill="rgba(46,143,224,0.18)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+  <text x="300" y="128" text-anchor="middle" font-family="Sora, sans-serif" font-size="9" font-weight="600" fill="#EEF2F7">+24%</text>
+  
+  <text x="200" y="210" text-anchor="middle" font-family="Sora, sans-serif" font-size="12" font-weight="600" fill="#94A1B2" letter-spacing="0.08em">QUARTERLY REPORT</text>
+</svg>

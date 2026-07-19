@@ -298,14 +298,12 @@ section.band{position:relative;padding:var(--section-y) 0;z-index:3}
 .h-hint{font-family:var(--font-mono);font-size:11px;color:var(--muted-2);letter-spacing:.12em;text-transform:uppercase;display:flex;gap:8px;align-items:center}
 @media(max-width:900px){.h-track{flex-wrap:wrap;justify-content:center;padding:0 20px 40px}.icard{flex:0 0 86%;height:auto;min-height:300px}}
 
-/* Pinned horizontal industries (desktop): lock the section to the viewport
-   height so the heading + cards always fit on-screen while the track scrolls
-   horizontally — nothing spills below the fold. */
+/* Static 4-column industries grid (desktop): all four verticals visible
+   at once, no horizontal scrolling required. */
 @media(min-width:901px){
-  #industries{height:100vh;display:flex;flex-direction:column;overflow:hidden}
-  #industries .h-head{flex:0 0 auto;padding-block:clamp(44px,6vh,72px) clamp(12px,2vh,24px)}
-  #industries .h-track{flex:1 1 auto;min-height:0;align-items:center;padding-bottom:clamp(16px,3vh,44px)}
-  #industries .icard{height:min(440px,100%)}
+  #industries .h-head{padding-block:clamp(44px,6vh,72px) clamp(12px,2vh,24px)}
+  #industries .h-track{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:0 24px 60px;will-change:auto}
+  #industries .h-track .icard{flex:none;width:auto;height:375px;min-height:0}
 }
 
 /* industries: dark cards + animated white graphics */
@@ -318,7 +316,8 @@ section.band{position:relative;padding:var(--section-y) 0;z-index:3}
    Row 1 = number (top-left) ··· glyph (top-right); the padding-top reserves
    that row, then the title and (after a gap) the description flow below it. */
 .icard.vcard{align-items:center;justify-content:flex-start;text-align:center;padding-top:150px}
-.icard.vcard h4{font-size:1.7rem;line-height:1.05}
+.icard.vcard h4{font-size:1.5rem;line-height:1.05}
+.icard.vcard p{font-size:12.5px}
 .icard.vcard p{margin-top:22px}
 .icard p{color:#94A1B2}
 .icard .media{display:none}
@@ -394,16 +393,18 @@ section.band{position:relative;padding:var(--section-y) 0;z-index:3}
 
 /* CTA */
 .cta-band{position:relative;border:1px solid var(--line);border-radius:var(--r-xl);padding:clamp(34px,3.4vw,54px);margin-top:20px;overflow:hidden;background:linear-gradient(120deg,rgba(242,104,14,.12),rgba(46,143,224,.05));
-  display:grid;grid-template-columns:minmax(0,0.63fr) minmax(0,1fr);gap:clamp(28px,3.6vw,52px);align-items:start}
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:clamp(28px,3.6vw,52px);align-items:start}
 .cta-band .glow{position:absolute;inset:0;background:radial-gradient(700px 400px at 90% 110%,rgba(242,104,14,.28),transparent 60%)}
 .cta-copy{position:relative;z-index:1;min-width:0}
 .cta-band h3{position:relative;font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:600;letter-spacing:-.02em;max-width:22ch}
 .cta-band p{position:relative;color:var(--muted);margin-top:14px;max-width:54ch;font-weight:300}
 .cta-band .cta-row{position:relative}
-/* industry-verticals image filling the band's right side */
-.cta-media{position:relative;z-index:1;min-width:0;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line-2);box-shadow:var(--shadow-2);line-height:0}
-.cta-media img{display:block;width:100%;height:auto}
-@media(max-width:900px){.cta-band{grid-template-columns:1fr;gap:28px}}
+/* industry-verticals image as a 2x2 grid showing only the public
+   verticals (Railways, Telecom, BFSI, Public Sector). Real Estate,
+   Oil & Gas and Energy & Utilities are not shown. */
+.cta-media{position:relative;z-index:1;min-width:0;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line-2);box-shadow:var(--shadow-2);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;aspect-ratio:1/1;width:100%}
+.cta-tile{background-image:url('/images/contact-verticals.png');background-size:400% 200%;background-repeat:no-repeat;border-radius:var(--r-sm);min-height:0}
+@media(max-width:900px){.cta-band{grid-template-columns:1fr;gap:28px}.cta-media{max-width:300px;margin:0 auto}}
 
 /* FOOTER */
 footer{border-top:1px solid var(--line);margin-top:56px;padding:60px 0 50px;position:relative;z-index:3}
@@ -1024,6 +1025,186 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:60px 0 50px;posi
   text-decoration: none;
 }
 
+/* Glassmorphism animated enhancements */
+.inv-hero-spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    700px 500px at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(242, 104, 14, 0.08),
+    transparent 50%
+  );
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.inv-hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.55;
+}
+.inv-hero-blob--orange {
+  top: 12%;
+  right: 8%;
+  width: 320px;
+  height: 320px;
+  background: rgba(242, 104, 14, 0.45);
+  animation: blob-float 10s ease-in-out infinite;
+}
+.inv-hero-blob--blue {
+  bottom: 18%;
+  right: 22%;
+  width: 260px;
+  height: 260px;
+  background: rgba(46, 143, 224, 0.35);
+  animation: blob-float 12s ease-in-out infinite reverse;
+}
+.inv-hero-blob--purple {
+  top: 38%;
+  right: 2%;
+  width: 180px;
+  height: 180px;
+  background: rgba(155, 107, 255, 0.32);
+  animation: blob-float 8s ease-in-out infinite 1s;
+}
+
+@keyframes blob-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-18px, 22px) scale(1.06);
+  }
+  66% {
+    transform: translate(14px, -16px) scale(0.96);
+  }
+}
+
+.inv-hero-card {
+  position: relative;
+  overflow: hidden;
+}
+.inv-hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--angle, 0deg),
+    rgba(255, 255, 255, 0.08),
+    rgba(242, 104, 14, 0.55),
+    rgba(46, 143, 224, 0.45),
+    rgba(155, 107, 255, 0.45),
+    rgba(242, 104, 14, 0.55),
+    rgba(255, 255, 255, 0.08)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: border-rotate 6s linear infinite;
+}
+.inv-hero-card:hover::before {
+  opacity: 1;
+}
+.inv-hero-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    220px 220px at var(--card-x, 50%) var(--card-y, 50%),
+    rgba(242, 104, 14, 0.18),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.inv-hero-card:hover::after {
+  opacity: 1;
+}
+
+.inv-hero-card-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  transform: skewX(-22deg);
+  pointer-events: none;
+  transition: none;
+}
+.inv-hero-card:hover .inv-hero-card-shimmer {
+  animation: shimmer-sweep 0.85s ease forwards;
+}
+
+@keyframes border-rotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes shimmer-sweep {
+  to {
+    left: 180%;
+  }
+}
+
+.inv-hero-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+@media (max-width: 980px) {
+  .inv-hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .inv-hero-cards {
+    max-width: 640px;
+  }
+  .inv-hero-blob--orange {
+    width: 220px;
+    height: 220px;
+  }
+  .inv-hero-blob--blue,
+  .inv-hero-blob--purple {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+@media (max-width: 720px) {
+  .inv-hero-cards {
+    grid-template-columns: 1fr;
+  }
+  .inv-hero-card:nth-child(3),
+  .inv-hero-card--wide {
+    grid-column: auto;
+  }
+}
+
 .inv-ticker {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -1111,11 +1292,17 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:60px 0 50px;posi
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid var(--line);
+  overflow: hidden;
 }
 .inv-news-image img {
-  max-height: 80px;
-  width: auto;
-  opacity: 0.85;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  transition: transform 0.5s var(--ease);
+}
+.inv-news-card:hover .inv-news-image img {
+  transform: scale(1.05);
 }
 .inv-news-body {
   padding: 22px;
@@ -1190,57 +1377,133 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:60px 0 50px;posi
 
 .inv-toolkit-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  margin-top: 40px;
+  margin-top: 44px;
 }
-.inv-toolkit-card {
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  padding: 30px;
-  background: var(--panel);
+.inv-toolkit-linkwrap {
+  display: block;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.35s, border-color 0.35s;
+  border-radius: var(--r-lg);
 }
-.inv-toolkit-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--orange);
+.inv-toolkit-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  background: rgba(18, 24, 34, 0.55);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 18px 44px -20px rgba(0, 0, 0, 0.45);
+  transition: transform 0.4s var(--ease), border-color 0.4s, background 0.4s;
+  height: 100%;
+}
+.inv-toolkit-linkwrap:hover .inv-toolkit-card {
+  transform: translateY(-6px);
+  border-color: rgba(242, 104, 14, 0.55);
+  background: rgba(26, 34, 47, 0.72);
+}
+.inv-toolkit-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--angle, 0deg),
+    rgba(255, 255, 255, 0.05),
+    rgba(242, 104, 14, 0.45),
+    rgba(46, 143, 224, 0.35),
+    rgba(242, 104, 14, 0.45),
+    rgba(255, 255, 255, 0.05)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: border-rotate 6s linear infinite;
+}
+.inv-toolkit-linkwrap:hover .inv-toolkit-card::before {
+  opacity: 1;
+}
+.inv-toolkit-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.07),
+    transparent
+  );
+  transform: skewX(-22deg);
+  pointer-events: none;
+  opacity: 0;
+}
+.inv-toolkit-linkwrap:hover .inv-toolkit-shimmer {
+  opacity: 1;
+  animation: shimmer-sweep 0.85s ease forwards;
 }
 .inv-toolkit-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(242, 104, 14, 0.1);
+  background: linear-gradient(135deg, rgba(242, 104, 14, 0.18), rgba(46, 143, 224, 0.12));
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--orange);
   margin-bottom: 18px;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s;
+}
+.inv-toolkit-linkwrap:hover .inv-toolkit-icon {
+  transform: scale(1.08);
+  box-shadow: 0 10px 28px -8px rgba(242, 104, 14, 0.35);
 }
 .inv-toolkit-icon svg {
   width: 24px;
   height: 24px;
 }
 .inv-toolkit-card h3 {
+  position: relative;
+  z-index: 1;
   font-size: 1.15rem;
   font-weight: 600;
   margin-bottom: 8px;
 }
 .inv-toolkit-card p {
+  position: relative;
+  z-index: 1;
   font-size: 13px;
   color: var(--muted);
   font-weight: 300;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 .inv-toolkit-link {
-  display: inline-block;
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   margin-top: 18px;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--orange);
+  transition: gap 0.25s var(--ease);
+}
+.inv-toolkit-linkwrap:hover .inv-toolkit-link {
+  gap: 10px;
 }
 
 .inv-info-grid {

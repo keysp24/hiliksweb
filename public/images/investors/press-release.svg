@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225" width="400" height="225">
+  <defs>
+    <linearGradient id="p-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F131A"/>
+      <stop offset="50%" stop-color="#121822"/>
+      <stop offset="100%" stop-color="#0B0D11"/>
+    </linearGradient>
+    <linearGradient id="p-glass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.10)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.02)"/>
+    </linearGradient>
+    <linearGradient id="p-mega" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9248"/>
+      <stop offset="100%" stop-color="#F2680E"/>
+    </linearGradient>
+    <filter id="p-blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+  </defs>
+  <rect width="400" height="225" fill="url(#p-bg)"/>
+  
+  <!-- ambient glows -->
+  <circle cx="180" cy="110" r="100" fill="#F2680E" opacity="0.10" filter="url(#p-blur)"/>
+  <circle cx="320" cy="70" r="55" fill="#9B6BFF" opacity="0.10" filter="url(#p-blur)"/>
+  
+  <!-- grid -->
+  <g opacity="0.05">
+    <path d="M0 45h400M0 90h400M0 135h400M0 180h400" stroke="#EEF2F7" stroke-width="1"/>
+  </g>
+  
+  <!-- sound wave rings -->
+  <circle cx="175" cy="105" r="95" fill="none" stroke="#F2680E" stroke-width="1" stroke-opacity="0.08"/>
+  <circle cx="175" cy="105" r="75" fill="none" stroke="#F2680E" stroke-width="1" stroke-opacity="0.12"/>
+  <circle cx="175" cy="105" r="55" fill="none" stroke="#F2680E" stroke-width="1" stroke-opacity="0.18"/>
+  
+  <!-- glass megaphone body -->
+  <path d="M115 150 L115 60 Q115 48 128 52 L205 82 Q225 90 205 98 L128 128 Q115 132 115 120 Z" fill="url(#p-glass)" stroke="rgba(255,255,255,0.16)" stroke-width="1"/>
+  <path d="M115 150 L115 60 Q115 48 128 52 L205 82 Q225 90 205 98 L128 128 Q115 132 115 120 Z" fill="url(#p-mega)" opacity="0.85"/>
+  
+  <!-- glass handle -->
+  <rect x="125" y="128" width="18" height="42" rx="6" fill="rgba(155,107,255,0.35)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+  
+  <!-- megaphone highlight -->
+  <path d="M130 62 L190 86" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- announcement cards -->
+  <g transform="translate(240, 65)">
+    <rect x="0" y="0" width="95" height="24" rx="12" fill="url(#p-glass)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+    <rect x="12" y="9" width="45" height="6" rx="3" fill="#2E8FE0" opacity="0.9"/>
+  </g>
+  <g transform="translate(255, 100)">
+    <rect x="0" y="0" width="80" height="20" rx="10" fill="url(#p-glass)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+    <rect x="12" y="8" width="36" height="4" rx="2" fill="#9B6BFF" opacity="0.9"/>
+  </g>
+  <g transform="translate(245, 130)">
+    <rect x="0" y="0" width="90" height="20" rx="10" fill="url(#p-glass)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+    <rect x="12" y="8" width="48" height="4" rx="2" fill="#F2680E" opacity="0.9"/>
+  </g>
+  
+  <!-- sparkle accents -->
+  <circle cx="235" cy="55" r="3" fill="#FFFFFF" opacity="0.5"/>
+  <circle cx="340" cy="115" r="2" fill="#FFFFFF" opacity="0.4"/>
+  <circle cx="260" cy="165" r="2.5" fill="#F2680E" opacity="0.6"/>
+  
+  <text x="200" y="210" text-anchor="middle" font-family="Sora, sans-serif" font-size="12" font-weight="600" fill="#94A1B2" letter-spacing="0.08em">PRESS RELEASE</text>
+</svg>

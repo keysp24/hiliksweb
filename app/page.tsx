@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+
 import Hero3D from '@/components/Hero3D';
 import Marquee from '@/components/Marquee';
 import AIBand from '@/components/AIBand';
@@ -75,25 +75,8 @@ export default function Home() {
           });
         });
 
-        // horizontal industries (desktop only) — pin section, scrub track (matches source)
-        const mm = gsap.matchMedia();
-        mm.add('(min-width: 901px)', () => {
-          const track = document.getElementById('htrack');
-          if (!track) return;
-          const dist = () => track.scrollWidth - window.innerWidth + 72;
-          gsap.to(track, {
-            x: () => -dist(),
-            ease: 'none',
-            scrollTrigger: {
-              trigger: '#industries',
-              start: 'top top',
-              end: () => '+=' + dist(),
-              pin: true,
-              scrub: 0.6,
-              invalidateOnRefresh: true,
-            },
-          });
-        });
+        // Industries are now displayed as a static 4-column grid on desktop,
+        // so the previous horizontal-scroll pin has been removed.
       });
     })().catch(() => {
       // safety: if GSAP fails to load, never leave content hidden
@@ -231,14 +214,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* INDUSTRIES (horizontal) */}
+      {/* INDUSTRIES */}
       <section className="h-section light" id="industries">
         <div className="wrap h-head">
           <div className="sec-num reveal">01 &mdash; Industries We Serve</div>
           <h2 className="sec-title reveal">Verticalized practices for critical industries</h2>
           <p className="sec-lead reveal">
-            Domain-focused business units &mdash; each fluent in its industry, all engineering-led.{' '}
-            <span className="h-hint">&rarr; scroll to traverse</span>
+            Domain-focused business units &mdash; each fluent in its industry, all engineering-led.
           </p>
         </div>
         <div className="h-track" id="htrack">
@@ -339,14 +321,15 @@ export default function Home() {
                 <Link href="/contact" className="btn btn-ghost" data-mag data-c>Send Inquiry</Link>
               </div>
             </div>
-            <div className="cta-media">
-              <Image
-                src="/images/contact-verticals.png"
-                alt="Hiliks industry verticals — Railways, Telecom, BFSI, Public Sector, and Partnerships"
-                width={1536}
-                height={1024}
-                sizes="(max-width: 900px) 92vw, 46vw"
-              />
+            <div
+              className="cta-media"
+              role="img"
+              aria-label="Hiliks industry verticals — Railways, Telecom, BFSI and Public Sector"
+            >
+              <div className="cta-tile" style={{ backgroundPosition: '0% 0%' }} />
+              <div className="cta-tile" style={{ backgroundPosition: '33.333% 0%' }} />
+              <div className="cta-tile" style={{ backgroundPosition: '66.666% 0%' }} />
+              <div className="cta-tile" style={{ backgroundPosition: '100% 0%' }} />
             </div>
           </div>
         </div>

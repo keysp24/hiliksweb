@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225" width="400" height="225">
+  <defs>
+    <linearGradient id="b-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F131A"/>
+      <stop offset="50%" stop-color="#121822"/>
+      <stop offset="100%" stop-color="#0B0D11"/>
+    </linearGradient>
+    <linearGradient id="b-glass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.09)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.02)"/>
+    </linearGradient>
+    <linearGradient id="b-table" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(46,143,224,0.25)"/>
+      <stop offset="100%" stop-color="rgba(46,143,224,0.05)"/>
+    </linearGradient>
+    <filter id="b-blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+  </defs>
+  <rect width="400" height="225" fill="url(#b-bg)"/>
+  
+  <!-- ambient glow -->
+  <circle cx="200" cy="120" r="110" fill="#2E8FE0" opacity="0.08" filter="url(#b-blur)"/>
+  <circle cx="320" cy="70" r="60" fill="#F2680E" opacity="0.08" filter="url(#b-blur)"/>
+  
+  <!-- grid -->
+  <g opacity="0.05">
+    <path d="M0 45h400M0 90h400M0 135h400M0 180h400" stroke="#EEF2F7" stroke-width="1"/>
+  </g>
+  
+  <!-- glass table top -->
+  <path d="M70 125 Q200 100 330 125 L330 150 Q200 175 70 150 Z" fill="url(#b-table)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+  <path d="M70 125 Q200 100 330 125" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+  
+  <!-- table glow center -->
+  <ellipse cx="200" cy="135" rx="90" ry="14" fill="#2E8FE0" opacity="0.12" filter="url(#b-blur)"/>
+  
+  <!-- chairs / figures as glass silhouettes -->
+  <g opacity="0.85">
+    <path d="M95 90c0-13 10.3-23 23-23s23 10 23 23v25h-46V90z" fill="#5E6B7C"/>
+    <circle cx="118" cy="75" r="16" fill="url(#b-glass)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+  </g>
+  
+  <g opacity="0.95">
+    <path d="M177 85c0-15 11.6-27 26-27s26 12 26 27v30h-52V85z" fill="#2E8FE0"/>
+    <circle cx="203" cy="68" r="18" fill="url(#b-glass)" stroke="rgba(255,255,255,0.20)" stroke-width="1"/>
+    <!-- subtle chair back highlight -->
+    <circle cx="203" cy="68" r="12" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.3"/>
+  </g>
+  
+  <g opacity="0.85">
+    <path d="M265 90c0-13 10.3-23 23-23s23 10 23 23v25h-46V90z" fill="#5E6B7C"/>
+    <circle cx="288" cy="75" r="16" fill="url(#b-glass)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+  </g>
+  
+  <!-- floating glass document -->
+  <g transform="translate(170, 42)">
+    <rect x="0" y="0" width="60" height="40" rx="8" fill="url(#b-glass)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <rect x="10" y="10" width="25" height="4" rx="2" fill="#F2680E" opacity="0.9"/>
+    <rect x="10" y="18" width="40" height="3" rx="1.5" fill="#5E6B7C" opacity="0.5"/>
+    <rect x="10" y="25" width="32" height="3" rx="1.5" fill="#5E6B7C" opacity="0.35"/>
+  </g>
+  
+  <!-- status indicator -->
+  <rect x="165" y="165" width="70" height="26" rx="13" fill="rgba(22,160,133,0.15)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+  <circle cx="182" cy="178" r="5" fill="#16A085"/>
+  <text x="215" y="182" text-anchor="middle" font-family="Sora, sans-serif" font-size="9" font-weight="600" fill="#EEF2F7">PASSED</text>
+  
+  <text x="200" y="210" text-anchor="middle" font-family="Sora, sans-serif" font-size="12" font-weight="600" fill="#94A1B2" letter-spacing="0.08em">BOARD OUTCOME</text>
+</svg>

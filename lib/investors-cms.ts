@@ -48,7 +48,7 @@ export const investorsCms = {
         summary:
           'Review the latest unaudited financial results and accompanying investor presentation.',
         href: '#documents',
-        image: '/images/hiliks-logo.png',
+        image: '/images/investors/quarterly-report.svg',
       },
       {
         tag: 'Annual Report',
@@ -56,7 +56,7 @@ export const investorsCms = {
         date: '2025-08-11',
         summary: 'Download the complete annual report including financial statements and governance disclosures.',
         href: '/investors/reports/annual-reports/Annualreport2025.pdf',
-        image: '/images/hiliks-logo.png',
+        image: '/images/investors/annual-report.svg',
       },
       {
         tag: 'Regulatory Filing',
@@ -64,7 +64,7 @@ export const investorsCms = {
         date: '2026-06-30',
         summary: 'Outcome of the board meeting held to consider and approve the quarterly financial results.',
         href: '#documents',
-        image: '/images/hiliks-logo.png',
+        image: '/images/investors/board-meeting.svg',
       },
       {
         tag: 'Press Release',
@@ -72,7 +72,7 @@ export const investorsCms = {
         date: '2026-05-15',
         summary: 'Updates on preferential allotment, listing approvals and related disclosures.',
         href: '#documents',
-        image: '/images/hiliks-logo.png',
+        image: '/images/investors/press-release.svg',
       },
     ],
   },
@@ -109,34 +109,47 @@ export const investorsCms = {
     ],
   },
 
-  // Infosys-style "Investor Toolkit" cards
+  // Investor Toolkit — quick-action cards with clear objectives
   toolkit: {
     eyebrow: 'Investor Toolkit',
-    title: 'Everything you need as an investor',
+    title: 'Quick actions for investors',
+    lead: 'Find reports, understand governance, manage shareholding and stay updated with regulatory disclosures.',
     items: [
       {
-        title: 'Corporate Governance',
-        desc: 'Governance policies, committee charters and compliance reports.',
+        title: 'Financial Reports',
+        desc: 'Download quarterly results, annual reports and audited financial statements.',
         href: '#documents',
-        icon: '<path d="M12 3 3 8l9 5 9-5-9-5zM4 12l8 4.5L20 12M4 16l8 4.5L20 16"/>',
+        icon: '<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
       },
       {
-        title: 'Financial Results',
-        desc: 'Quarterly results, annual reports and regulatory filings.',
-        href: '#documents',
-        icon: '<path d="M3 4h18v16H3zM3 9h18M7 14h4M7 18h4M15 14h2M15 18h2"/>',
+        title: 'Governance',
+        desc: 'Review board policies, committee charters and corporate governance reports.',
+        href: '#governance',
+        icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>',
       },
       {
-        title: 'Shareholding',
-        desc: 'Shareholding pattern, clause 35 filings and shareholder forms.',
-        href: '#documents',
-        icon: '<circle cx="12" cy="8" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>',
+        title: 'Shareholder Services',
+        desc: 'Get help with dividends, share transfers, demat and investor queries.',
+        href: '/contact',
+        icon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
       },
       {
-        title: 'Disclosures',
-        desc: 'Regulation 30 disclosures, board outcomes and postal ballots.',
+        title: 'Regulatory Disclosures',
+        desc: 'Access Regulation 30 filings, board meeting outcomes and material updates.',
         href: '#documents',
-        icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>',
+        icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>',
+      },
+      {
+        title: 'Stock Information',
+        desc: 'View BSE listing details, corporate announcements and price history.',
+        href: '#documents',
+        icon: '<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>',
+      },
+      {
+        title: 'Investor Calendar',
+        desc: 'Track board meetings, result announcements and shareholder meetings.',
+        href: '#documents',
+        icon: '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
       },
     ],
   },
